@@ -1,4 +1,4 @@
-export class MissBook extends React.Component {
+export class BookIndex extends React.Component {
     render() {
         return (
             <section className="about">

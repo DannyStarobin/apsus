@@ -1,4 +1,4 @@
-export class MissKeep extends React.Component {
+export class NoteIndex extends React.Component {
 
 
     render() {

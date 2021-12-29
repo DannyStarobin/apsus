@@ -1,6 +1,15 @@
-export class MissEmail extends React.Component{
+export class MailIndex extends React.Component {
 
-  
+    componentDidMount() {
+
+    }
+
+    loadMails = () => {
+        mailService.query().then()
+  }
+
+
+
     render() {
         return (
             <section className="about">
