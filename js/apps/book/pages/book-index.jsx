@@ -1,6 +1,4 @@
 export class MissBook extends React.Component {
-
-
     render() {
         return (
             <section className="about">
