@@ -62,11 +62,32 @@ const gMails = [
 
 _createMails()
 
-function query() {
-    const mails = _loadMailsFromStorage()
-    return Promise.resolve(mails)
+function query(filterBy = null) {
+    console.log('filterBy:', filterBy);
+    
+    const mails = _loadMailsFromStorage();
+    if (!filterBy) return Promise.resolve(mails);
+    const filteredMails = _getFilteredMails(mails, filterBy);
+    return Promise.resolve(filteredMails);
 }
 
+function _getFilteredMails(mails, filterBy) {
+    let { subject, Inbox, stared, sentMail, drafts } = filterBy;
+    
+    return mails.filter((mail) => {
+       
+        console.log('mail:',  mail.subject.toLowerCase());
+        console.log('subject:', subject);
+        
+       
+
+           if( mail.subject.toLowerCase().includes(subject.toLowerCase()))return mail
+          else if( mail.body.toLowerCase().includes(subject.toLowerCase()))return mail
+          else if( mail.from.toLowerCase().includes(subject.toLowerCase()))return mail
+          else if( mail.name.toLowerCase().includes(subject.toLowerCase()))return mail
+        
+    })
+}
 
 function _createMails() {
     var mails = _loadMailsFromStorage()
