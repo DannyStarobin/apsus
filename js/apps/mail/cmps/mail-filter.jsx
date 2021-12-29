@@ -1,64 +1,51 @@
-export class CarFilter extends React.Component {
+
+
+export class MailFilter extends React.Component {
     state = {
         filterBy: {
-            vendor: '',
-            minSpeed: '',
-            maxSpeed: '',
-        }
-    }
+            subject: '',
+            Inbox: '',
+            stared: '',
+            sentMail: '',
+            drafts: ''
+
+        },
+    };
+
+    onSubmitFilter = (ev) => {
+        ev.preventDefault();
+        this.props.onSetFilter(this.state.filterBy);
+        this.cleanForm();
+    };
 
     handleChange = ({ target }) => {
-        const field = target.name
-        const value = target.type === 'number' ? +target.value : target.value
+        const field = target.name;
+        const value = target.value;
         this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: value } }), () => {
             this.props.onSetFilter(this.state.filterBy)
         })
     }
 
-    onSubmitFilter = (ev) => {
-        ev.preventDefault()
-        this.props.onSetFilter(this.state.filterBy)
-        this.cleanForm()
-    }
-
     cleanForm = () => {
-        this.setState({ filterBy: { vendor: '', minSpeed: '', maxSpeed: '' } })
+        this.setState({ filterBy: { subject: '', Inbox: '', stared: '', sentMail: '', drafts: '' } })
     }
 
     render() {
-        const { filterBy: { vendor, minSpeed, maxSpeed } } = this.state
+        const {
+            filterBy: { subject, Inbox, stared, sentMail, drafts } } = this.state;
+
         return (
-            <form className="car-filter" onSubmit={this.onSubmitFilter}>
-                <label
-                    htmlFor="by-vendor">By Vendor:</label>
+            <form className="mail-filter-input" onSubmit={this.onSubmitFilter}>
+                
                 <input
-                    placeholder="Enter vendor"
                     type="text"
-                    id="by-vendor"
-                    name="vendor"
-                    value={vendor}
-                    onChange={this.handleChange} />
-                <label htmlFor="by-min-speed">Min speed:</label>
-                <input
-                    placeholder="Enter minimum speed"
-                    type="number"
-                    min="0"
-                    id="by-min-speed"
-                    name="minSpeed"
-                    value={minSpeed}
-                    onChange={this.handleChange} />
-                <label
-                    htmlFor="by-max-speed">Max speed:</label>
-                <input
-                    placeholder="Enter maximum speed"
-                    type="number"
-                    min="0"
-                    id="by-max-speed"
-                    name="maxSpeed"
-                    value={maxSpeed}
-                    onChange={this.handleChange} />
-                <button className="primary-btn">Filter</button>
+                    id="by-subject"
+                    name="subject"
+                    value={subject}
+                    onChange={this.handleChange}
+                />
+                <button>&#128270;</button>
             </form>
-        )
+        );
     }
 }

@@ -1,8 +1,5 @@
 export function MailPreview({ mail, onSelectMail, selectedMail }) {
-    console.log('mail.name:', mail.name);
-    console.log('selectedMail:', selectedMail);
-
-
+   
     function getBcgColor() {
         return (mail.isRead) ? 'inherit' : '#77889962'
     }

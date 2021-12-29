@@ -5,7 +5,9 @@ export class SearchInput extends React.Component {
 
     }
 
-
+    componentDidMount() {
+        this.setState({ app: this.props.app })
+    }
 
     onSubmitFilter = (ev) => {
         ev.preventDefault();
@@ -35,7 +37,7 @@ export class SearchInput extends React.Component {
                     type="text"
                     id="by-title"
                     name="title"
-                    value={title}
+                    // value={title}
                     onChange={this.handleChange}
                 />
             </form>

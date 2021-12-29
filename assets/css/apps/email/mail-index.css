@@ -19,3 +19,17 @@
 button.compose {
     border-radius: 2em;
 }
+
+.mail-filter-input{
+    position:absolute;
+    top:5vh;
+    left:50%;
+    /* width:; */
+    transform: translateX(-50%)  translateY(-50%)
+}
+
+.mail-filter-input input{
+width:40vw;
+height: 4vh;
+border-radius: 2em;
+}

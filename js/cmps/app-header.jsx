@@ -1,3 +1,4 @@
+import { SearchInput } from "./search-input.jsx"
 
 const { NavLink, withRouter } = ReactRouterDOM
 
@@ -22,6 +23,7 @@ export class AppHeader extends React.Component {
             <header className="app-header" >
                 <div className="logo">Apps Place</div>
 
+        
                 
                 <nav className="main-nav">
                     <NavLink activeClassName="my-active" exact to="/">Home</NavLink>
@@ -33,3 +35,4 @@ export class AppHeader extends React.Component {
         )
     }
 }
+
