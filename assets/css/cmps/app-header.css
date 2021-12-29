@@ -1,0 +1,10 @@
+.app-header {
+    height:  10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav a {
+    margin-inline-start: 10px;
+}
