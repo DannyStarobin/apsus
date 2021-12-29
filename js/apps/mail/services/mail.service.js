@@ -1,15 +1,16 @@
+import { storageService } from "../../../services/storage.service.js"
 
-
-export const carService = {
-   
+export const mailService = {
+    query,
 }
 
+const KEY = 'mailDB'
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
 
-const emails = [
+const gMails = [
     {
         id: 'e101',
         subject: 'Miss you!',
@@ -53,3 +54,28 @@ const emails = [
 
 ]
 
+
+_createMails()
+
+function query() {
+    const mails = _loadMailsFromStorage()
+    return Promise.resolve(mails)
+}
+
+
+function _createMails() {
+    var mails = _loadMailsFromStorage()
+    if (!mails || !mails.length) {
+        mails = gMails
+    }
+
+    _saveMailsToStorage(mails);
+}
+
+function _saveMailsToStorage(mails) {
+    storageService.saveToStorage(KEY, mails)
+}
+
+function _loadMailsFromStorage() {
+    return storageService.loadFromStorage(KEY)
+}
