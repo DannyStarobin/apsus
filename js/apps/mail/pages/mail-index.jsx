@@ -7,7 +7,7 @@ export class MailIndex extends React.Component {
     state = {
         mails: [],
         selectedMail: null,
-        filterBy:null,
+        filterBy: 'inbox',
     }
 
     componentDidMount() {
@@ -30,6 +30,13 @@ export class MailIndex extends React.Component {
         this.setState({ filterBy }, this.loadMails)
     }
 
+    onRemoveMail = (mailId) => {
+        mailService.removeMail(mailId).then(() => {
+            const newMails = this.state.mails.filter(mail => mail.id !== mailId)
+            this.setState({ mails: newMails }, this.loadMails)
+        })
+    }
+
     render() {
         const { mails } = this.state
         return (
@@ -38,12 +45,12 @@ export class MailIndex extends React.Component {
                 <div className="mail-filter">
                     <button className="compose">+ Compose</button>
                     <div className="filter-section">
-                        <div className="inbox">Inbox</div>
-                        <div className="sent">Sent</div>
+                       <button className="inbox" onClick={()=>this.onSetFilter('inbox')}>Inbox</button>
+                        <div className="sent" onClick={()=>this.onSetFilter('sent')}>Sent</div>
                     </div>
                 </div>
                 <div className="mail-box">
-                    <MailList mails={mails} onSelectMail={this.onSelectMail} selectedMail={this.state.selectedMail}/>
+                    <MailList mails={mails} onSelectMail={this.onSelectMail} selectedMail={this.state.selectedMail} onRemoveMail={this.onRemoveMail}/>
                     
                 </div>
             </section>
