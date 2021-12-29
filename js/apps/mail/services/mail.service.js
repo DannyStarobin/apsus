@@ -17,7 +17,8 @@ const gMails = [
         body: 'Would love to catch up sometimes',
         isRead: false,
         sentAt: 1551133910594,
-        to: 'user@appsus.com',
+        from: 'user@appsus.com',
+        name: 'Lola'
     },
     {
         id: 'e102',
@@ -25,7 +26,8 @@ const gMails = [
         body: 'Pay your taxes',
         isRead: false,
         sentAt: 1551133930594,
-        to: 'user@appsus.com',
+        from: 'user@appsus.com',
+        name: 'Maale yosef'
     },
     {
         id: 'e103',
@@ -33,7 +35,8 @@ const gMails = [
         body: 'Have you been...?',
         isRead: false,
         sentAt: 1551133950594,
-        to: 'user@appsus.com',
+        from: 'user@appsus.com',
+        name: 'Best vacations'
     },
     {
         id: 'e104',
@@ -41,15 +44,17 @@ const gMails = [
         body: 'What the fuck?',
         isRead: false,
         sentAt: 1551133970594,
-        to: 'user@appsus.com',
+        from: 'user@appsus.com',
+        name: 'Holly wtf project'
     },
     {
         id: 'e105',
-        subject: 'Amazon',
+        subject: 'Amazon order is on the way',
         body: 'hello Apsus your...',
         isRead: false,
         sentAt: 1551133990594,
-        to: 'user@appsus.com',
+        from: 'user@appsus.com',
+        name: 'Amazon'
     },
 
 ]

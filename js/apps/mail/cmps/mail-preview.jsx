@@ -1,13 +1,12 @@
 export function MailPreview({ mail }) {
+console.log('mail.name:', mail.name);
 
     return (
 
-        <div>
-            <h2>Subject:{mail.subject}</h2>
+        <div className="mail-preview">
+            <h3>{mail.name}</h3>
+            <h3>{mail.subject} <span>{mail.body}</span></h3>
             <h3>{mail.sentAt}</h3>
-            <h3>From:{mail.to}</h3>
-            <h3>{mail.body}</h3>
-            <h3>{mail.isRead}</h3>
         </div>
 
     )
