@@ -1,6 +1,4 @@
-// import {App} from './root-cmp.jsx'
-
-const App = () => <section>Aha</section>
+import {App} from './root-cmp.jsx'
 
 
 ReactDOM.render(
