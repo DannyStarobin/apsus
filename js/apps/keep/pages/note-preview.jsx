@@ -1,3 +1,5 @@
+import { MakeToDoList } from "../cmps/note-to-do.jsx"
+
 export function NotePreview({ note }) {
     if (note.type === 'note-txt') {
         return (
@@ -9,6 +11,7 @@ export function NotePreview({ note }) {
         return (
             <section className="note-preview">
                 <h4>{note.info.label}</h4>
+                <MakeToDoList todos={note.info.todos} />
             </section>
         )
     } else if (note.type === 'note-img') {
