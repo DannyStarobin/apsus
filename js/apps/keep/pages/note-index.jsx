@@ -16,13 +16,29 @@ export class NoteIndex extends React.Component {
             this.setState({notes})
         })
     }
+
+    onRemoveNote = (noteId) => {
+        noteService.deleteNote(noteId).then(
+            this.loadNotes()
+        )
+    }
+
+    onTogglePin = (noteId) => {
+        noteService.togglePin(noteId).then(
+            this.loadNotes()
+        )
+    }
+
+    // onChangeColor = (noteId) = {
+
+    // }
     
     render() {
         const {notes} = this.state
         return (
             <section className="note-index">
                 <div className="note-container">
-                    <NoteList notes={notes} />
+                    <NoteList notes={notes} onTogglePin={this.onTogglePin} onRemoveNote={this.onRemoveNote} />
                 </div>
             </section>
         )
