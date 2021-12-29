@@ -1,5 +1,5 @@
 import { MailList } from "../cmps/mail-list.jsx"
-import {mailService} from "../services/mail.service.js"
+import { mailService } from "../services/mail.service.js"
 export class MailIndex extends React.Component {
 
     state = {
@@ -18,14 +18,16 @@ export class MailIndex extends React.Component {
         })
     }
 
-
-
     render() {
-        const {mails} =this.state
+        const { mails } = this.state
         return (
             <section className="mail-index">
                 <div className="mail-filter">
-                    <button>Compose</button>
+                    <button className="compose">+ Compose</button>
+                    <div className="filter-section">
+                        <div className="inbox">Inbox</div>
+                        <div className="sent">Sent</div>
+                    </div>
                 </div>
                 <div className="mail-box">
                     <MailList mails={mails} />
