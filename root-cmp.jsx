@@ -3,7 +3,7 @@ import {Home} from './pages/home.jsx'
 export function App() {
     return <section className="app">
         <header>
-            <h1>My App</h1>
+            <h1>AppSus</h1>
         </header>
         <main>
             <Home/>
