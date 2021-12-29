@@ -1,6 +1,6 @@
-@import url(/assets/css/basics/base.css);
-@import url(/assets/css/cmps/app-header.css);
-@import url(/assets/css/apps/email/mail-index.css);
-@import url(/assets/css/cmps/user-msg.css);
-@import url(/assets/css/cmps/app-home.css);
-@import "../css/apps/keep/note-index.css"
+@import "./basics/base.css";
+@import "./cmps/app-header.css";
+@import "./apps/email/mail-index.css";
+@import "./cmps/user-msg.css";
+@import "./cmps/app-home.css";
+@import "../css/apps/email/cmps/mail-preview.css";
