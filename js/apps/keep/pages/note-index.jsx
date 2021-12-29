@@ -1,5 +1,5 @@
 import { noteService } from "../services/note.service.js"
-import { NoteList } from "./note-list.jsx"
+import { NoteList } from "../cmps/note-list.jsx"
 
 export class NoteIndex extends React.Component {
 
@@ -21,7 +21,6 @@ export class NoteIndex extends React.Component {
         const {notes} = this.state
         return (
             <section className="note-index">
-                <input className="add-note" />
                 <div className="note-container">
                     <NoteList notes={notes} />
                 </div>
