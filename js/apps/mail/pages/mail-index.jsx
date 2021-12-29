@@ -3,7 +3,8 @@ import { mailService } from "../services/mail.service.js"
 export class MailIndex extends React.Component {
 
     state = {
-        mails: []
+        mails: [],
+        selectedMail: null
     }
 
 
@@ -12,10 +13,19 @@ export class MailIndex extends React.Component {
     }
 
     loadMails = () => {
-        const { mails } = this.state
+        // const { mails } = this.state
         mailService.query().then((mails) => {
             this.setState({ mails })
         })
+    }
+
+
+    onSelectMail = (selectedMail) => {
+        selectedMail.isRead=true
+        this.setState({ selectedMail })
+
+
+
     }
 
     render() {
@@ -30,7 +40,7 @@ export class MailIndex extends React.Component {
                     </div>
                 </div>
                 <div className="mail-box">
-                    <MailList mails={mails} />
+                    <MailList mails={mails} onSelectMail={this.onSelectMail} selectedMail={this.state.selectedMail}/>
                 </div>
             </section>
         )

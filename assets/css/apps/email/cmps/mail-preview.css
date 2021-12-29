@@ -1,0 +1,15 @@
+.mail-preview {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(105, 105, 105);
+}
+
+.mail-preview h3 {
+    padding-inline-start: 15px;
+    padding-inline-end: 15px;
+}
+
+.mail-preview span {
+    color: rgb(83, 83, 83);
+    font-size: 14px;
+}
