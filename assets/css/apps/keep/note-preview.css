@@ -1,4 +1,6 @@
 .note-preview{
+    display: flex;
+    position: relative;
     border-radius: 10px;
     text-align: center;
     background-color: rgb(236, 236, 130);
@@ -6,4 +8,31 @@
     height: 200px;
     display: inline;
     box-shadow: 2px 2px 17px 2px rgba(0,0,0,0.8);
+}
+
+
+.note-preview img {
+    height: 100px;
+}
+
+.btn-container {
+    width: inherit;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    
+}
+
+.btn-container button {
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    transition: 0.2s transform;
+
+}
+
+.btn-container button:hover {
+    transform: scale(1.1);
 }
