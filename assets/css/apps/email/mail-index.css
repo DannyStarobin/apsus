@@ -1,0 +1,15 @@
+.mail-index {
+    display: flex;
+    height: 80vh;
+}
+
+.mail-box{
+    height: 100%;
+    width: 80vw;
+    background-color: aquamarine;
+}
+.mail-filter{
+    height: 100%;
+    width: 20vw;
+    background-color: rgb(35, 107, 83);
+}
