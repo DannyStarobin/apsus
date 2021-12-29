@@ -1,16 +1,19 @@
 import { MakeToDoList } from "../cmps/note-to-do.jsx"
+import { noteService } from "../services/note.service.js"
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onRemoveNote, onTogglePin }) {
+    const {id, isPinned} = note
+    const pinImg = (!isPinned) ? "assets/icons/pin.png" : "assets/icons/pined.png"
     if (note.type === 'note-txt') {
         return (
             <section className="note-preview">
                 <h4>{note.info.txt}</h4>
                 <div className="btn-container">
-                    <button>📌</button>
-                    <button>🎨</button>
-                    <button>📧</button>
-                    <button>📝</button>
-                    <button>🗑</button>
+                    <button onClick={()=> onTogglePin(id)}><img src={pinImg} /></button>
+                    <button><img src="assets/icons/palette.png"/></button>
+                    <button><img src="assets/icons/mail.png"/></button>
+                    <button><img src="assets/icons/edit.png"/></button>
+                    <button onClick={() => onRemoveNote(id)} ><img src="assets/icons/bin.png"/></button>
                 </div>
             </section>
     )
