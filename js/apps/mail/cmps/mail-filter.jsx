@@ -3,16 +3,14 @@
 export class MailFilter extends React.Component {
     state = {
         filterBy: {
-            subject: '',
-            Inbox: '',
-            stared: '',
-            sentMail: '',
-            drafts: ''
-
+            txt: '',
+            type: ''
         },
     };
 
     onSubmitFilter = (ev) => {
+        console.log('hi:', hi);
+        
         ev.preventDefault();
         this.props.onSetFilter(this.state.filterBy);
         this.cleanForm();
@@ -27,25 +25,38 @@ export class MailFilter extends React.Component {
     }
 
     cleanForm = () => {
-        this.setState({ filterBy: { subject: '', Inbox: '', stared: '', sentMail: '', drafts: '' } })
+        this.setState({ filterBy: { txt: '', type } })
     }
 
     render() {
         const {
-            filterBy: { subject, Inbox, stared, sentMail, drafts } } = this.state;
+            filterBy: { txt, type } } = this.state;
 
         return (
-            <form className="mail-filter-input" onSubmit={this.onSubmitFilter}>
-                
-                <input
-                    type="text"
-                    id="by-subject"
-                    name="subject"
-                    value={subject}
-                    onChange={this.handleChange}
-                />
-                <button>&#128270;</button>
-            </form>
+            <div>
+
+                <form className="mail-filter-input" onSubmit={this.onSubmitFilter}>
+                    <input
+                        type="text"
+                        id="by-txt"
+                        name="txt"
+                        value={txt}
+                        onChange={this.handleChange}
+                    />
+                    <button>&#128270;</button>
+                </form>
+                <input className="mail-filter-btn"
+                    type="button"
+                    name="type"
+                    value="inbox"
+                    onClick={this.handleChange}/>
+
+                <input className="mail-filter-btn"
+                    type="button"
+                    name="type"
+                    value="sent"
+                    onClick={this.handleChange} />
+            </div >
         );
     }
 }

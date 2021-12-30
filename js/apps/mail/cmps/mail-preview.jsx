@@ -8,10 +8,9 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail }) 
     }
     const mailClosed =
         <div className="mail-preview" style={{ backgroundColor: getBcgColor() }} onClick={() => onSelectMail(mail)} >
-         
-            <h3 className="mail-name"> <button><img src="assets/icons/star1.png" /></button> {mail.name}</h3>
-            <h3>{mail.subject} <span className="mail-body-short">-{mail.body} Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, rem? Repellendus debitis enim illum atque</span></h3>
-            <h3>{mail.sentAt}</h3>
+            <h3 className="mail-name"> <button><img src="assets/icons/star1.png" /></button>{mail.name}</h3>
+            <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body} Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, rem? Repellendus debitis enim illum atque</span></h3>
+            <h3 className="mail-time">{mail.sentAt}</h3>
         </div>
 
     if (mail !== selectedMail) return mailClosed

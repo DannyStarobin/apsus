@@ -1,7 +1,6 @@
 .mail-preview {
     display: flex;
-    /* justify-content: space-between; */
-    border-bottom: 1px solid rgb(83, 83, 83);
+    border-bottom: 1px solid rgb(167, 173, 180);
 }
 
 .mail-preview h3 {
@@ -14,31 +13,39 @@
     font-size: 14px;
 }
 
-
-
-.mail-preview-extended .email-adrres{
-    color: rgb(83, 83, 83);
-
-}
-
 .mail-preview .mail-name{
     width: 20%;
 } 
 
-.mail-preview-extended {
-border-bottom: 1px solid rgb(83, 83, 83);
+.mail-preview .mail-time{
+    width: 20%;
+    text-align: right;
 }
 
-.mail-preview  button img{
-    background-color: none;
+.mail-preview .mail-subject{
+    width: 60%;
 }
 
 .mail-preview button{
     cursor: pointer;
     border: none;
-    background-color: inherit;
-    
+    background-color: inherit;    
 }
+
+.mail-preview img{
+    height: 16px;
+    margin-right: 10px;
+}
+
+
+.mail-preview-extended .email-adrres{
+    color: rgb(83, 83, 83);
+}
+
+.mail-preview-extended {
+border-bottom: 1px solid rgb(167, 173, 180);;
+}
+
 
 .mail-preview-extended button{
     float: right;
@@ -50,7 +57,16 @@ border-bottom: 1px solid rgb(83, 83, 83);
     margin-inline-end:5px ;
 }
 
-.mail-preview button img,
+
 .mail-preview-extended button img {
   height: 16px;
 }
+
+.mail-preview-extended h2,
+.mail-preview-extended h3{
+    margin-left: 25px;
+} 
+.mail-preview-extended p{
+    margin-left: 25px;
+    margin-right: 25px;
+} 

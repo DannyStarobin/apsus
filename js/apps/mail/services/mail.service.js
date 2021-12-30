@@ -22,7 +22,7 @@ const gMails = [
         from: 'lola@bmail.com',
         name: 'Lola',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e102',
@@ -33,7 +33,7 @@ const gMails = [
         from: 'myosef@zalla.com',
         name: 'Maale yosef',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e103',
@@ -44,7 +44,7 @@ const gMails = [
         from: 'bestv@abmail.com',
         name: 'Best vacations',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e104',
@@ -55,7 +55,7 @@ const gMails = [
         from: 'holly@gsus.com',
         name: 'Holly wtf project',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e105',
@@ -66,7 +66,7 @@ const gMails = [
         from: 'amazor@service.com',
         name: 'Amazor',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e106',
@@ -77,7 +77,7 @@ const gMails = [
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e107',
@@ -88,7 +88,7 @@ const gMails = [
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
         stared: false,
-        status: null
+        type: null
     },
     {
         id: 'e108',
@@ -99,44 +99,45 @@ const gMails = [
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
         stared: false,
-        status: null
+        type: null
     },
 
 ]
 
-
 _createMails()
 
 function query(filterBy) {
-    // console.log('filterBy:', filterBy);
-     const mails = _loadMailsFromStorage();
-    if (!filterBy) return Promise.resolve(mails);
-    const filteredMails = _getFilteredMails(mails, filterBy);
+    let { txt, type } = filterBy;
+    if(!type) type = 'inbox'
+    const mails = _loadMailsFromStorage();
+    const sortedMails = _getSortedMails(mails, type)
+    if (!txt) return Promise.resolve(sortedMails);
+    const filteredMails = _getFilteredMails(sortedMails, txt);
     return Promise.resolve(filteredMails);
 }
 
-function _getFilteredMails(mails, filterBy) {
-    let { subject, inbox, stared, sentMail, drafts } = filterBy;    
+function _getFilteredMails(sortedMails, txt) {
+    
+    return sortedMails.filter((mail) => {
+        if ((mail.subject.toLowerCase().includes(txt.toLowerCase())) ||
+            (mail.body.toLowerCase().includes(txt.toLowerCase())) ||
+            (mail.from.toLowerCase().includes(txt.toLowerCase())) ||
+            (mail.name.toLowerCase().includes(txt.toLowerCase()))) return mail
+    })
+}
+
+
+function _getSortedMails(mails, type) {
     return mails.filter((mail) => {
-
-
-        if (filterBy === subject) {
-            if (mail.subject.toLowerCase().includes(subject.toLowerCase())) return mail
-            else if (mail.body.toLowerCase().includes(subject.toLowerCase())) return mail
-            else if (mail.from.toLowerCase().includes(subject.toLowerCase())) return mail
-            else if (mail.name.toLowerCase().includes(subject.toLowerCase())) return mail
-        }
-        // console.log('loggedinUser.email:', loggedinUser.email);
-
-        if (filterBy === 'inbox') {
-            if (mail.from !== loggedinUser.email) return mail
-        }
-
-        if (filterBy === 'sent') {
+        if (type === 'sent') {
             if (mail.from === loggedinUser.email) return mail
+        }
+        if (type === 'inbox') {
+            if (mail.from !== loggedinUser.email) return mail
         }
     })
 }
+
 
 function getMailById(mailId) {
     const mails = _loadMailsFromStorage()

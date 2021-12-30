@@ -6,14 +6,15 @@
 .mail-box{
     height: 100%;
     width:100%;
-    background-color: aquamarine;
+    background-color: rgb(227, 236, 245);
 }
 
 .mail-filter{
     height: 100%;
     width: 300px;
-    background-color: rgb(35, 107, 83);
+    background-color: rgb(219, 226, 233);
     text-align: start;
+    border-right: solid 1px rgb(167, 173, 180);;
 }
 
 button.compose {
@@ -32,4 +33,12 @@ button.compose {
 width:40vw;
 height: 4vh;
 border-radius: 2em;
+}
+
+
+.new-mail{
+    position: absolute;
+width: 50vh;
+height: 50vh;
+background-color: lightslategray;
 }
