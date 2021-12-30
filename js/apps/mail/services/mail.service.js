@@ -156,6 +156,30 @@ function _createMails() {
     _saveMailsToStorage(mails);
 }
 
+function getTimeForDisplay(timeStamp) {
+    const now = Date.now()
+    const diff = ((((now - timeStamp)/1000)/60)/60)
+ 
+    if (diff < 24) {
+        const Hours = new Date(timeStamp).getHours().toString()
+        const Min = new Date(timeStamp).getMinutes().toString()
+        const Time = (Hours + ':' + Min)
+        return Time
+    } else if (diff < 8760) {
+        const Month = new Date(timeStamp).getMonth().toString()
+        const Day = new Date(timeStamp).getDay().toString()
+        const Time = (Month + ' ' + Day);
+        return Time
+
+    } else {
+        const Year = new Date(timeStamp).getFullYear().toString()
+        const Month = new Date(timeStamp).getMonth().toString()
+        const Day = new Date(timeStamp).getDay().toString()
+        const Time = (Year + ' ' + Month + ' ' + Day);
+        return Time
+    }
+}
+
 function removeMail(mailId) {
     let mails = _loadMailsFromStorage()
     mails = mails.filter(mail => mail.id !== mailId)
