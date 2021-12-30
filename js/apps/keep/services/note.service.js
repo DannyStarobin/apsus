@@ -64,14 +64,12 @@ function createTxtNote(txt) {
 function createTodoNote(todoStr) {
     let toDoList = todoStr.split(',')
     const newList = []
-    console.log(toDoList);
     toDoList.map(todo =>{
         newList.push({
             txt: todo,
             doneAt: null
         })
     })
-    console.log(newList);
     const toDoNote = {
         id: utilService.makeId(),
         type: "note-txt",
@@ -96,12 +94,9 @@ function togglePin(noteId) {
 }
 
 function deleteNote(noteId) {
-    console.log(noteId);
     let notes = _loadNotesFromStorage()
     notes = notes.filter(note => note.id !== noteId)
     _saveNotesToStorage(notes)
-    console.log(notes);
-    console.log('removed');
     return Promise.resolve()
 }
 
@@ -116,8 +111,6 @@ function query(filterBy) {
 function _getFilteredNotes(searchStr) {
     let notes = _loadNotesFromStorage()
     return notes.filter(note =>{
-        console.log(searchStr);
-        console.log(note.info.txt);
         if (note.info.txt) {
             return note.info.txt.toLowerCase().includes(searchStr)
         } else if (note.info.title) {

@@ -5,11 +5,9 @@ const { Link } = ReactRouterDOM;
 
 export function NotePreview({ note, onRemoveNote, onTogglePin }) {
   const { id, isPinned, style } = note;
-  console.log(style);
   const pinImg = !isPinned ? 'assets/icons/pin.png' : 'assets/icons/pined.png';
   if (note.type === 'note-txt') {
     return (
-
         <section style={style} className='note-preview'>
           <h4>{note.info.txt}</h4>
           <div className='btn-container'>
