@@ -1,0 +1,9 @@
+form.note-filter{
+    text-align: center;
+    padding-bottom: 10px;
+}
+form.note-filter input{
+    width: 200px;
+    border-radius: 2em;
+}
+

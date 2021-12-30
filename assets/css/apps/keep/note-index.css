@@ -1,7 +1,6 @@
 .note-container {
-    height: 90vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px
 }

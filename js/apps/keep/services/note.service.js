@@ -21,12 +21,13 @@ const gNotes = [
 ];
 
 
+
+
 _createNotes()
 
 
 function _createNotes() {
     var notes = _loadNotesFromStorage()
-    console.log(notes);
     if (!notes || !notes.length) {
         notes = gNotes
 
@@ -59,10 +60,28 @@ function deleteNote(noteId) {
     return Promise.resolve()
 }
 
-function query() {
+function query(filterBy) {
+    const {searchStr} = filterBy
     const notes = _loadNotesFromStorage()
-    return Promise.resolve(notes)
+    if (!filterBy) return Promise.resolve (notes)
+    const filteredNotes = _getFilteredNotes(searchStr)
+    return Promise.resolve(filteredNotes)
 }
+
+function _getFilteredNotes(searchStr) {
+    let notes = _loadNotesFromStorage()
+    return notes.filter(note =>{
+        console.log(searchStr);
+        console.log(note.info.txt);
+        if (note.info.txt) {
+            return note.info.txt.toLowerCase().includes(searchStr)
+        } else if (note.info.title) {
+            return note.info.title.toLowerCase().includes(searchStr)
+        }
+    })
+}
+
+
 
 function getNoteById(noteId) {
     const notes = _loadNotesFromStorage()

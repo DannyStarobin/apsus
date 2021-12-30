@@ -1,10 +1,12 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/note-list.jsx"
+import { NoteFilter } from "../cmps/note-filter.jsx"
 
 export class NoteIndex extends React.Component {
 
     state = {
-        notes: []
+        notes: [],
+        filterBy: ''
     }
 
     componentDidMount() {
@@ -12,15 +14,19 @@ export class NoteIndex extends React.Component {
     }
 
     loadNotes = () => {
-        noteService.query().then((notes) =>{
+        const {filterBy} = this.state
+        noteService.query(filterBy).then((notes) =>{
             this.setState({notes})
         })
     }
-
     onRemoveNote = (noteId) => {
         noteService.deleteNote(noteId).then(
             this.loadNotes()
         )
+    }
+
+    onSetFilter = (filterBy) => {
+        this.setState({ filterBy }, this.loadNotes)
     }
 
     onTogglePin = (noteId) => {
@@ -37,6 +43,7 @@ export class NoteIndex extends React.Component {
         const {notes} = this.state
         return (
             <section className="note-index">
+                <NoteFilter onSetFilter={this.onSetFilter}/>
                 <div className="note-container">
                     <NoteList notes={notes} onTogglePin={this.onTogglePin} onRemoveNote={this.onRemoveNote} />
                 </div>

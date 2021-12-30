@@ -1,8 +1,12 @@
 @import "./basics/base.css";
 @import "./cmps/app-header.css";
-@import "./apps/email/mail-index.css";
-@import "./cmps/user-msg.css";
 @import "./cmps/app-home.css";
+@import "./cmps/user-msg.css";
+
+@import "./apps/email/mail-index.css";
 @import "../css/apps/email/cmps/mail-preview.css";
+
 @import "/assets/css/apps/keep/note-index.css";
 @import "/assets/css/apps/keep/note-preview.css";
+@import "/assets/css/apps/keep/note-edit.css";
+@import "/assets/css/apps/keep/note-filter.css"
