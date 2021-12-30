@@ -9,7 +9,7 @@ export class MailIndex extends React.Component {
 
     state = {
         mails: [],
-        selectedMail: null,
+        selectedMailId: null,
         filterBy: '',
         newMail: {
             to: '',
@@ -30,9 +30,11 @@ export class MailIndex extends React.Component {
         })
     }
 
-    onSelectMail = (selectedMail) => {
-        selectedMail.isRead = true
-        this.setState({ selectedMail })
+    onSelectMail = (mailId) => {
+        this.setState({ selectedMail: mailId })
+        mailService.setMailIsRead(mailId).then(
+            this.loadMails()
+        )
     }
 
     onSetFilter = (filterBy) => {
@@ -44,6 +46,13 @@ export class MailIndex extends React.Component {
             const newMails = this.state.mails.filter(mail => mail.id !== mailId)
             this.setState({ mails: newMails }, this.loadMails)
         })
+    }
+
+    onToggleStar = (mailId) => {
+        console.log('hello')
+        mailService.toggleStar(mailId).then(
+            this.loadMails()
+        )
     }
 
     mail = () => {
@@ -89,7 +98,7 @@ export class MailIndex extends React.Component {
                     <div className="filter-section"></div>
                 </div>
                 <div className="mail-box">
-                    <MailList mails={mails} onSelectMail={this.onSelectMail} selectedMail={this.state.selectedMail} onRemoveMail={this.onRemoveMail} />
+                    <MailList mails={mails} onSelectMail={this.onSelectMail} selectedMail={this.state.selectedMail} onRemoveMail={this.onRemoveMail} onToggleStar={this.onToggleStar} />
                 </div>
             </section>
         )

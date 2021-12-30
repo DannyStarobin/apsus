@@ -1,9 +1,12 @@
 import { storageService } from "../../../services/storage.service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export const mailService = {
     query,
     removeMail,
-    getMailById
+    getMailById,
+    toggleStar,
+    setMailIsRead
 }
 
 const KEY = 'mailDB'
@@ -16,89 +19,89 @@ const gMails = [
     {
         id: 'e101',
         subject: 'Miss you!',
-        body: 'Would love to catch up sometimes',
+        body: utilService.makeLorem(150),
         isRead: false,
         sentAt: 1551133910594,
         from: 'lola@bmail.com',
         name: 'Lola',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e102',
         subject: 'Municipal tax!',
-        body: 'Pay your taxes',
+        body:  utilService.makeLorem(100),
         isRead: false,
         sentAt: 1551133930594,
         from: 'myosef@zalla.com',
         name: 'Maale yosef',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e103',
         subject: 'Come to...',
-        body: 'Have you been...?',
+        body:  utilService.makeLorem(200),
         isRead: false,
         sentAt: 1551133950594,
         from: 'bestv@abmail.com',
         name: 'Best vacations',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e104',
         subject: 'Wtf?',
-        body: 'What the fuck?',
+        body:  utilService.makeLorem(150),
         isRead: false,
         sentAt: 1551133970594,
         from: 'holly@gsus.com',
         name: 'Holly wtf project',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e105',
         subject: 'Amazor order is on the way',
-        body: 'hello Apsus your...',
+        body:  utilService.makeLorem(200),
         isRead: false,
         sentAt: 1551133990594,
         from: 'amazor@service.com',
         name: 'Amazor',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e106',
         subject: 'Tell me more about wtf',
-        body: 'Hello how are you this days?...',
+        body:  utilService.makeLorem(250),
         isRead: false,
         sentAt: 1551133990594,
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e107',
         subject: 'Interested in your holidays',
-        body: 'I would like to receive some info about vications in march..',
+        body:  utilService.makeLorem(100),
         isRead: false,
         sentAt: 1551133990594,
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
-        stared: false,
+        isStared: false,
         type: null
     },
     {
         id: 'e108',
         subject: 'order didnt arived',
-        body: 'hello Amazor your...',
+        body:  utilService.makeLorem(50),
         isRead: false,
         sentAt: 1551133990594,
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
-        stared: false,
+        isStared: false,
         type: null
     },
 
@@ -162,6 +165,33 @@ function removeMail(mailId) {
     _saveMailsToStorage(mails);
     return Promise.resolve()
 }
+
+function toggleStar(mailId) {
+    console.log(mailId)
+
+    const mails = _loadMailsFromStorage()
+    const mail = mails.find(mail => {
+        return mail.id === mailId
+    })
+    mail.isStared = !mail.isStared
+ 
+    _saveMailsToStorage(mails)
+    return Promise.resolve()
+}
+
+function setMailIsRead(mailId){
+    const mails = _loadMailsFromStorage()
+    const mail = mails.find(mail => {
+        return mail.id === mailId
+    })
+    if (!mail.isRead) mail.isRead=true
+console.log('mail.isRead:', mail.isRead);
+
+ 
+    _saveMailsToStorage(mails)
+    return Promise.resolve()
+}
+
 
 function _saveMailsToStorage(mails) {
     storageService.saveToStorage(KEY, mails)
