@@ -1,6 +1,10 @@
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/note-list.jsx"
 import { NoteFilter } from "../cmps/note-filter.jsx"
+import { NoteEdit } from "../cmps/note-edit.jsx"
+
+const { Route, Switch } = ReactRouterDOM
+
 
 export class NoteIndex extends React.Component {
 
@@ -46,7 +50,9 @@ export class NoteIndex extends React.Component {
                 <NoteFilter onSetFilter={this.onSetFilter}/>
                 <div className="note-container">
                     <NoteList notes={notes} onTogglePin={this.onTogglePin} onRemoveNote={this.onRemoveNote} />
+
                 </div>
+                <Route component={NoteEdit} path="/keep/:noteId" />
             </section>
         )
     }

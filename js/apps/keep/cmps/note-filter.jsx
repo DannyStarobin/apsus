@@ -2,7 +2,7 @@ export class NoteFilter extends React.Component {
     state ={
         filterBy: {
             searchStr: ''
-        }
+        },
     }
     handleChange = ({ target }) => {
         const field = target.name
@@ -36,6 +36,9 @@ export class NoteFilter extends React.Component {
                 name="searchStr"
                 value={searchStr}
                 onChange={this.handleChange} />
+                <button>Txt</button>
+                <button>Img</button>
+                <button>ToDo</button>
         </form>
         )
     }

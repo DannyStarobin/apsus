@@ -1,0 +1,13 @@
+.note-edit {
+    top: 0;
+    background-color: rgba(31, 29, 29, 0.315);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+
+}
+
+.note-edit .note-container {
+
+}

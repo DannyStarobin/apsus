@@ -41,18 +41,21 @@ export class NoteEdit extends React.Component {
     // }
 
     render() {
-        // const { vendor, speed, id } = this.state.car
+        const { note } = this.state
+        if (!note) return <div className="div">loading..</div>
         return (
             <section className="note-edit">
+                <div className="note-container">
                 <h1>Edit Note</h1>
-                <h4>{this.state.note}</h4>
+                <pre>{this.state.note.id}</pre>
                 <form >
                     {/* <label htmlFor="by-vendor">Vendor:</label>
                     <input placeholder="Enter vendor" name="vendor" type="text" id="by-vendor" value={vendor} onChange={this.handleChange} />
                     <label htmlFor="by-speed">Speed:</label>
                     <input placeholder="Enter speed" name="speed" type="number" id="by-speed" value={speed} onChange={this.handleChange} />
-                    <button className="primary-btn ">Save car</button> */}
+                <button className="primary-btn ">Save car</button> */}
                 </form>
+                </div>
             </section>
         )
     }
