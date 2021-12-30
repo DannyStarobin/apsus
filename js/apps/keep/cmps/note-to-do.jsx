@@ -1,4 +1,4 @@
-export function MakeToDoList(todos) {
+export function ToDoList(todos) {
     const Todo = todos.todos.map((todo,idx) =>{
             if (todo.doneAt === null) {
                 return <p key={idx}>{todo.txt}</p>
