@@ -5,13 +5,13 @@
 
 .mail-box{
     height: 100%;
-    width: 80vw;
+    width:100%;
     background-color: aquamarine;
 }
 
 .mail-filter{
     height: 100%;
-    width: 20vw;
+    width: 300px;
     background-color: rgb(35, 107, 83);
     text-align: start;
 }

@@ -2,7 +2,8 @@ import { storageService } from "../../../services/storage.service.js"
 
 export const mailService = {
     query,
-    removeMail
+    removeMail,
+    getMailById
 }
 
 const KEY = 'mailDB'
@@ -135,6 +136,14 @@ function _getFilteredMails(mails, filterBy) {
             if (mail.from === loggedinUser.email) return mail
         }
     })
+}
+
+function getMailById(mailId) {
+    const mails = _loadMailsFromStorage()
+    var mail = mails.find(function (mail) {
+        return mailId === mail.id
+    })
+    return Promise.resolve(mail)
 }
 
 function _createMails() {
