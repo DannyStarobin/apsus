@@ -4,13 +4,13 @@ export class MailFilter extends React.Component {
     state = {
         filterBy: {
             txt: '',
-            type: ''
+            type: '',
         },
     };
 
     onSubmitFilter = (ev) => {
         console.log('hi:', hi);
-        
+
         ev.preventDefault();
         this.props.onSetFilter(this.state.filterBy);
         this.cleanForm();
@@ -42,20 +42,16 @@ export class MailFilter extends React.Component {
                         name="txt"
                         value={txt}
                         onChange={this.handleChange}
+                        autoComplete="off"
                     />
                     <button>&#128270;</button>
                 </form>
-                <input className="mail-filter-btn"
-                    type="button"
-                    name="type"
-                    value="inbox"
-                    onClick={this.handleChange}/>
-
-                <input className="mail-filter-btn"
-                    type="button"
-                    name="type"
-                    value="sent"
-                    onClick={this.handleChange} />
+                <div className="filter-btns">
+                    <button className="mail-filter-btn" name="type" value="inbox" onClick={this.handleChange}><img className="img-btn" src={'assets/icons/inbox.png'} />Inbox</button>
+                    <button className="mail-filter-btn" name="type" value="sent" onClick={this.handleChange}><img className="img-btn" src={'assets/icons/sent.png'}/>Sent</button>
+                    <button className="mail-filter-btn" name="type" value="isStared" onClick={this.handleChange}><img className="img-btn" src={'assets/icons/star1.png'}/>Stared</button>
+                    <button className="mail-filter-btn" name="type" value="isStared" onClick={this.handleChange}><img className="img-btn" src={'assets/icons/draft.png'}/>Drafts</button>
+                </div>
             </div >
         );
     }

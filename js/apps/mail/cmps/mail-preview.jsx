@@ -1,21 +1,20 @@
-export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, onToggleStar }) {
+import { mailService } from "../services/mail.service.js";
 
-    console.log('selectedMail:', selectedMail);
+export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, onToggleStar }) {
 
     const { Link } = ReactRouterDOM
     const starImg = (!mail.isStared) ? "assets/icons/star1.png" : 'assets/icons/star.png';
     const background = (mail.isRead) ? 'inherit' : '#77889962'
-
-console.log('mail.isRead:', mail.isRead);
-
+    const sentAt = mailService.getTimeForDisplay(mail.sentAt)
+    // const sentAt =.getMailById(mail.id)
 
     const mailClosed =
-        <div className="mail-preview" style={{background}} onClick={() => onSelectMail(mail.id)} >
+        <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id)} >
 
             <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
             <h3 className="mail-name">{mail.name}</h3>
             <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h3>
-            <h3 className="mail-time">{mail.sentAt}</h3>
+            <h3 className="mail-time">{sentAt}</h3>
         </div>
 
     if (mail.id !== selectedMail) return mailClosed
