@@ -23,7 +23,9 @@ export class NoteEdit extends React.Component {
 
     handleChange = ({ target }) => {
         const field = target.name
+        console.log(field);
         const value = target.type === 'number' ? +target.value : target.value
+        console.log(value);
         this.setState((prevState) => ({ note: { ...prevState.note, [field]: value } }))
     }
 
@@ -41,10 +43,10 @@ export class NoteEdit extends React.Component {
     // }
 
     render() {
-        console.log(this.state);
         const { note } = this.state
         if (!note) return <div className="div">loading..</div>
-        const {}
+        const {info} = note
+        const {txt} = info
         return (
             <section className="note-edit">
                 <div className="note-container">
@@ -52,7 +54,7 @@ export class NoteEdit extends React.Component {
                 {/* <h4>Editing {this.state.note.id}</h4> */}
                 <form >
                     <label htmlFor="by-txt">Text:</label>
-                    <input placeholder="Enter Text" name="txt" type="text" id="by-txt" value={txt} onChange={this.handleChange} />
+                    <input placeholder="Enter Text" name="info" type="text" id="by-txt" value={txt} onChange={this.handleChange} />
                 <button className="primary-btn ">Save Note</button>
                 </form>
                 </div>
