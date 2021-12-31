@@ -1,4 +1,6 @@
 import { mailService } from '../services/mail.service.js'
+import { MailIndex } from './mail-index.jsx';
+import { MailFilter } from '../cmps/mail-filter.jsx';
 // import { eventBusService } from "../services/event-bus.service.js";
 
 const { Link } = ReactRouterDOM
@@ -41,21 +43,42 @@ export class MailDetails extends React.Component {
         })
     }
 
+    onToggleStar = (mailId) => {
+        mailService.toggleStar(mailId).then(
+            this.loadMail()
+        )
+    }
+
+
     render() {
         const { mail } = this.state
-        if (!mail) return   <React.Fragment></React.Fragment>
+        if (!mail) return <React.Fragment></React.Fragment>
+        const sentAt = mailService.getTimeForDisplay(mail.sentAt)
+        const starImg = (!mail.isStared) ? "assets/icons/star1.png" : 'assets/icons/star.png';
         return (
             <section className="mail-details" >
-                <Link className="primary-btn clean-link" to={`/mail/edit/${mail.id}`}>Edit mail</Link>
 
-               
-                <h3>{mail.name}</h3>
-                <h3>{mail.subject} <span>-{mail.body}</span></h3>
-                <h3>{mail.sentAt}</h3>
+                {/* <div className="mail-filter">
+                    <MailFilter onSetFilter={MailIndex.onSetFilter} />
+                    <div className="filter-section"></div>
+                </div> */}
+                <div className="mail-options-bar">
+                    <button className="primary-btn" onClick={this.onGoBack}><img src={'assets/icons/left-arrow.png'}/></button>
+                    <button className="primary-btn" onClick={this.mail}><img src={'assets/icons/bin.png'}/></button>
+                    <button className="primary-btn" onClick={this.mail}><img src={'assets/icons/unread-message.png'}/></button>
+                </div>
 
+                <h2 className="mail-subject">{mail.subject} </h2>
+                <div className="name-btns-container">
+                    <h3 className="mail-name">{mail.name} <span className="email-adrres">&#12296;{mail.from}&#12297;</span></h3>
+                    <div className="btns-time-container">
+                        <h4 className="mail-date">{sentAt}</h4>
+                        <button onClick={() => this.onToggleStar(mail.id)}><img src={starImg}/></button>
+                        <button>&#10150;</button>
+                    </div>
+                </div>
+                <p className className="mail-body">-{mail.body}</p>
 
-                    < button className="primary-btn" onClick={this.onGoBack}>Go back</button>
-                <button className="primary-btn" onClick={this.mail}>Remove mail</button>
                 {/* <Link className="primary-btn clean-link" to={`/mail/${mail.getNextMailId(mail.id)}`}>Next mail</Link> */}
             </section>
         )

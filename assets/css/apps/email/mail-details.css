@@ -1,0 +1,42 @@
+.mail-details>* {
+    margin: 0 10px;
+}
+
+.mail-details button {
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+}
+
+.mail-details img {
+    height: 16px;
+}
+
+.mail-details .name-btns-container {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.mail-details .btns-time-container {
+    display: flex;
+}
+
+.mail-details .btns-time-container>* {
+    margin-inline-end: 10px;
+    color: rgb(126, 126, 126);
+    padding: 0 6px;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.mail-details .email-adrres {
+    color: rgb(126, 126, 126);
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.mail-details .mail-options-bar {
+    border-bottom:solid 1px rgb(126, 126, 126);
+    margin-bottom: 20px;
+}

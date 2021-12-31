@@ -6,7 +6,9 @@ export const mailService = {
     removeMail,
     getMailById,
     toggleStar,
-    setMailIsRead
+    setMailIsRead,
+    getTimeForDisplay,
+    saveMail
 }
 
 const KEY = 'mailDB'
@@ -30,7 +32,7 @@ const gMails = [
     {
         id: 'e102',
         subject: 'Municipal tax!',
-        body:  utilService.makeLorem(100),
+        body: utilService.makeLorem(100),
         isRead: false,
         sentAt: 1551133930594,
         from: 'myosef@zalla.com',
@@ -41,7 +43,7 @@ const gMails = [
     {
         id: 'e103',
         subject: 'Come to...',
-        body:  utilService.makeLorem(200),
+        body: utilService.makeLorem(200),
         isRead: false,
         sentAt: 1551133950594,
         from: 'bestv@abmail.com',
@@ -52,7 +54,7 @@ const gMails = [
     {
         id: 'e104',
         subject: 'Wtf?',
-        body:  utilService.makeLorem(150),
+        body: utilService.makeLorem(150),
         isRead: false,
         sentAt: 1551133970594,
         from: 'holly@gsus.com',
@@ -63,7 +65,7 @@ const gMails = [
     {
         id: 'e105',
         subject: 'Amazor order is on the way',
-        body:  utilService.makeLorem(200),
+        body: utilService.makeLorem(200),
         isRead: false,
         sentAt: 1551133990594,
         from: 'amazor@service.com',
@@ -74,7 +76,7 @@ const gMails = [
     {
         id: 'e106',
         subject: 'Tell me more about wtf',
-        body:  utilService.makeLorem(250),
+        body: utilService.makeLorem(250),
         isRead: false,
         sentAt: 1551133990594,
         from: 'user@appsus.com',
@@ -85,7 +87,7 @@ const gMails = [
     {
         id: 'e107',
         subject: 'Interested in your holidays',
-        body:  utilService.makeLorem(100),
+        body: utilService.makeLorem(100),
         isRead: false,
         sentAt: 1551133990594,
         from: 'user@appsus.com',
@@ -96,7 +98,7 @@ const gMails = [
     {
         id: 'e108',
         subject: 'order didnt arived',
-        body:  utilService.makeLorem(50),
+        body: utilService.makeLorem(50),
         isRead: false,
         sentAt: 1551133990594,
         from: 'user@appsus.com',
@@ -111,7 +113,7 @@ _createMails()
 
 function query(filterBy) {
     let { txt, type } = filterBy;
-    if(!type) type = 'inbox'
+    if (!type) type = 'inbox'
     const mails = _loadMailsFromStorage();
     const sortedMails = _getSortedMails(mails, type)
     if (!txt) return Promise.resolve(sortedMails);
@@ -120,7 +122,7 @@ function query(filterBy) {
 }
 
 function _getFilteredMails(sortedMails, txt) {
-    
+
     return sortedMails.filter((mail) => {
         if ((mail.subject.toLowerCase().includes(txt.toLowerCase())) ||
             (mail.body.toLowerCase().includes(txt.toLowerCase())) ||
@@ -138,6 +140,9 @@ function _getSortedMails(mails, type) {
         if (type === 'inbox') {
             if (mail.from !== loggedinUser.email) return mail
         }
+        if (type === 'isStared') {
+            if (mail.isStared) return mail
+        }
     })
 }
 
@@ -148,6 +153,45 @@ function getMailById(mailId) {
         return mailId === mail.id
     })
     return Promise.resolve(mail)
+}
+
+function saveMail(mailToSave) {
+    
+    return mailToSave.id ? _updateMail(mailToSave) : _addMail(mailToSave)
+}
+
+function _addMail(mailToSave) {
+    let mails = _loadMailsFromStorage()
+    var mail = _createMail(mailToSave)
+    mails = [mail, ...mails]
+    _saveMailsToStorage(mails);
+    return Promise.resolve()
+}
+
+function _updateMail(mailToSave) {
+    const mails = _loadMailsFromStorage()
+    var mailIdx = mails.findIndex(function (mail) {
+        return mail.id === mailToSave.id;
+    })
+    mails[mailIdx] = mailToSave
+    _saveMailsToStorage(mails);
+    return Promise.resolve()
+}
+
+function _createMail(mailToSave) {
+    // if (!mailToSave.speed) mailToSave.speed = utilService.getRandomIntInclusive(1, 200)
+    return {
+        id: utilService.makeId(),
+        subject: mailToSave.subject,
+        body: utilService.makeLorem(150),
+        isRead: false,
+        sentAt: Date.now(),
+        from:'user@appsus.com',
+        name: 'Mahatma Appsus',
+        isStared: false,
+        type: null
+
+    } 
 }
 
 function _createMails() {
@@ -161,8 +205,8 @@ function _createMails() {
 
 function getTimeForDisplay(timeStamp) {
     const now = Date.now()
-    const diff = ((((now - timeStamp)/1000)/60)/60)
- 
+    const diff = ((((now - timeStamp) / 1000) / 60) / 60)
+
     if (diff < 24) {
         const Hours = new Date(timeStamp).getHours().toString()
         const Min = new Date(timeStamp).getMinutes().toString()
@@ -178,7 +222,7 @@ function getTimeForDisplay(timeStamp) {
         const Year = new Date(timeStamp).getFullYear().toString()
         const Month = new Date(timeStamp).getMonth().toString()
         const Day = new Date(timeStamp).getDay().toString()
-        const Time = (Year + ' ' + Month + ' ' + Day);
+        const Time = (Day + '/' + Month + '/' + Year);
         return Time
     }
 }
@@ -191,27 +235,21 @@ function removeMail(mailId) {
 }
 
 function toggleStar(mailId) {
-    console.log(mailId)
-
     const mails = _loadMailsFromStorage()
     const mail = mails.find(mail => {
         return mail.id === mailId
     })
     mail.isStared = !mail.isStared
- 
     _saveMailsToStorage(mails)
     return Promise.resolve()
 }
 
-function setMailIsRead(mailId){
+function setMailIsRead(mailId) {
     const mails = _loadMailsFromStorage()
     const mail = mails.find(mail => {
         return mail.id === mailId
     })
-    if (!mail.isRead) mail.isRead=true
-console.log('mail.isRead:', mail.isRead);
-
- 
+    if (!mail.isRead) mail.isRead = true
     _saveMailsToStorage(mails)
     return Promise.resolve()
 }

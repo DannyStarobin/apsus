@@ -3,42 +3,127 @@
     height: 90vh;
 }
 
-.mail-box{
+.mail-box {
     height: 100%;
-    width:100%;
+    width: 100%;
     background-color: rgb(227, 236, 245);
 }
 
-.mail-filter{
+.mail-filter {
     height: 100%;
     width: 300px;
     background-color: rgb(219, 226, 233);
     text-align: start;
-    border-right: solid 1px rgb(167, 173, 180);;
+    border-right: solid 1px rgb(167, 173, 180);
+    ;
 }
 
-button.compose {
+.mail-filter .compose {
+    border-radius: 2em;
+    border: black solid 1px;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+.mail-filter-input {
+    position: absolute;
+    top: 5vh;
+    left: 50%;
+    /* width:; */
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.mail-filter-input input {
+    width: 40vw;
+    height: 4vh;
     border-radius: 2em;
 }
 
-.mail-filter-input{
-    position:absolute;
-    top:5vh;
-    left:50%;
-    /* width:; */
-    transform: translateX(-50%)  translateY(-50%)
+.mail-filter .filter-btns {
+    margin-top:50px ;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
 }
 
-.mail-filter-input input{
-width:40vw;
-height: 4vh;
-border-radius: 2em;
+.mail-filter .filter-btns img{
+    height: 14px;
+    margin: 0 10px;
 }
 
+.mail-filter .filter-btns>*{
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
 
-.new-mail{
+.new-mail {
     position: absolute;
-width: 50vh;
-height: 50vh;
-background-color: lightslategray;
+    height: 450px;
+    width: 550px;
+    bottom: 0;
+    right: 10%;
+    background-color: lightslategray;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: white;
+}
+
+.new-mail h1 {
+    margin: 0;
+    padding: 10px;
+    height: 40px;
+    background-color: rgb(46, 46, 46);
+    color: white;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.email-addres-input {
+    margin: 0;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 0.5px solid rgb(46, 46, 46);
+    padding: 0 10px;
+}
+
+.email-txt-input {
+    height: 340px;
+    width: 100%;
+    resize: none;
+    border: none;
+    border-bottom: 0.5px solid rgb(46, 46, 46);
+    /* margin-bottom: 5px; */
+}
+
+.mail-btns-container {
+    padding: 0 10px;
+}
+
+.mail-send-btn {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(79, 135, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.close-mail-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(46, 46, 46);
+    border: none;
+    color: white;
+    cursor: pointer;
 }
