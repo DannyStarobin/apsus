@@ -52,7 +52,7 @@ export class NoteIndex extends React.Component {
                     <NoteList notes={notes} onTogglePin={this.onTogglePin} onRemoveNote={this.onRemoveNote} />
 
                 </div>
-                <Route component={NoteEdit} path="/keep/:noteId" />
+                <Route component={NoteEdit} loadNotes={this.loadNotes} path="/keep/:noteId" />
             </section>
         )
     }

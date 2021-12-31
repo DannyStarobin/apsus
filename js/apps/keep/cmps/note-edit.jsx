@@ -1,14 +1,17 @@
 import { noteService } from "../services/note.service.js"
+import { NoteIndex } from "../pages/note-index.jsx"
 
 export class NoteEdit extends React.Component {
     state = {
-        note: null
+        note: {
+            info: {
+                txt:''
+            }
+        }
     }
 
-    // inputRef = React.createRef()
 
     componentDidMount() {
-        // this.inputRef.current.focus()
         this.loadNote()
     }
 
@@ -26,35 +29,45 @@ export class NoteEdit extends React.Component {
         console.log(field);
         const value = target.type === 'number' ? +target.value : target.value
         console.log(value);
-        this.setState((prevState) => ({ note: { ...prevState.note, [field]: value } }))
+        this.setState((prevState) => ({ note: {
+            ...prevState.note,
+            info:{
+                [field]: value  
+            }
+            } }))
     }
 
     onGoBack = () => {
         this.props.history.push('/keep')
     }
 
-    // onSaveCar = (ev) => {
-    //     ev.preventDefault()
-    //     const { car } = this.state
-    //     carService.saveCar(car).then(() => {
-    //         eventBusService.emit('user-msg', { txt: 'Saved !', type: 'success' })
-    //         this.onGoBack()
-    //     })
-    // }
+    onSaveNote = (ev) => {
+        ev.preventDefault()
+        const { note } = this.state
+        console.log(note);
+        noteService.updateNote(note).then(()=>{
+            this.onGoBack()
+            this.props.loadNotes()
+        })
+        // carService.saveCar(car).then(() => {
+        //     eventBusService.emit('user-msg', { txt: 'Saved !', type: 'success' })
+        //     this.onGoBack()
+        // })
+    }
 
     render() {
         const { note } = this.state
         if (!note) return <div className="div">loading..</div>
-        const {info} = note
-        const {txt} = info
+        const {txt} = note.info
+        console.log(this.state.note)
         return (
             <section className="note-edit">
                 <div className="note-container">
                 <h1>Edit Note</h1>
                 {/* <h4>Editing {this.state.note.id}</h4> */}
-                <form >
+                <form onSubmit={this.onSaveNote}>
                     <label htmlFor="by-txt">Text:</label>
-                    <input placeholder="Enter Text" name="info" type="text" id="by-txt" value={txt} onChange={this.handleChange} />
+                    <input placeholder="Enter Text" name="txt" type="text" id="by-txt" value={txt || ''} onChange={this.handleChange} />
                 <button className="primary-btn ">Save Note</button>
                 </form>
                 </div>

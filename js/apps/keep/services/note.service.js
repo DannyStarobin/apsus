@@ -8,6 +8,7 @@ export const noteService = {
     togglePin,
     createTxtNote,
     createTodoNote,
+    updateNote,
 
 }
 
@@ -39,13 +40,25 @@ function createImgNote(url) {
 _createNotes()
 
 
+function updateNote(noteToSave) {
+    console.log(noteToSave);
+    const notes = _loadNotesFromStorage()
+    var noteIdx = notes.findIndex(function (note) {
+        return note.id === noteToSave.id;
+    })
+    notes[noteIdx] = noteToSave
+    console.log(notes);
+    _saveNotesToStorage(notes);
+    return Promise.resolve()
+}
+
+
 function _createNotes() {
     var notes = _loadNotesFromStorage()
     if (!notes || !notes.length) {
         notes = gNotes
 
     }
-    createTodoNote('eat breakfest,workout,sleep')
     _saveNotesToStorage(notes)
 } 
 
