@@ -1,4 +1,5 @@
 import { noteService } from '../services/note.service.js';
+// import { TodosInput } from './todos-input.jsx';
 
 export class NoteEdit extends React.Component {
   state = {
@@ -190,19 +191,8 @@ export class NoteEdit extends React.Component {
                   onChange={this.handleTodosChange}
                 />
               </div>
-              {/* <TodosInput todos={todos}/> */}
 
-              {/* <div className='input-container'>
-                <label htmlFor='by-url'>Url:</label>
-                <input
-                  placeholder='Enter Url'
-                  name='url'
-                  type='text'
-                  id='by-url'
-                  value={url || ''}
-                  onChange={this.handleImgChange}
-                />
-              </div> */}
+              {/* <TodosInput todos={todos}/> */}
 
               <div className='input-container'>
                 <label htmlFor='by-color'>Color:</label>

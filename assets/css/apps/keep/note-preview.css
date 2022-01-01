@@ -15,7 +15,7 @@
 }
 
 .btn-container {
-    width: inherit;
+    width: 100%;
     position: absolute;
     bottom: 0;
     display: flex;
