@@ -1,9 +1,10 @@
 import { noteService } from '../services/note.service.js';
-import { NoteIndex } from '../pages/note-index.jsx';
 
 export class NoteEdit extends React.Component {
   state = {
     note: null,
+    info: null,
+    style: null
   };
 
   componentDidMount() {

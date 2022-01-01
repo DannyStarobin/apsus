@@ -8,3 +8,7 @@
 .add-note {
     text-align: center;
 }
+
+.add-note input {
+    border-radius: 2em;
+}

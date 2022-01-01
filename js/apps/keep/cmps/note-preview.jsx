@@ -1,5 +1,4 @@
 import { ToDoList } from '../cmps/note-to-do.jsx';
-import { noteService } from '../services/note.service.js';
 
 const { Link } = ReactRouterDOM;
 
