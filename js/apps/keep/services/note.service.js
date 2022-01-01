@@ -8,7 +8,8 @@ export const noteService = {
     togglePin,
     createTxtNote,
     createTodoNote,
-
+    updateNote,
+    createImgNote,
 }
 
 const KEY = 'noteDB'
@@ -33,10 +34,27 @@ function createImgNote(url) {
         },
         style: { backgroundColor: utilService.getRandomColor() }
     }
+    const notes = _loadNotesFromStorage()
+    notes.push(imgNote)
+    _saveNotesToStorage(notes)
+    return Promise.resolve()
 }
 
 
 _createNotes()
+
+
+function updateNote(noteToSave) {
+    console.log(noteToSave);
+    const notes = _loadNotesFromStorage()
+    var noteIdx = notes.findIndex(function (note) {
+        return note.id === noteToSave.id;
+    })
+    notes[noteIdx] = noteToSave
+    console.log(notes);
+    _saveNotesToStorage(notes);
+    return Promise.resolve()
+}
 
 
 function _createNotes() {
@@ -45,7 +63,6 @@ function _createNotes() {
         notes = gNotes
 
     }
-    createTodoNote('eat breakfest,workout,sleep')
     _saveNotesToStorage(notes)
 } 
 
@@ -56,9 +73,13 @@ function createTxtNote(txt) {
         isPinned: false,
         info: {
             txt
-        }
+        },
+        style: { backgroundColor: utilService.getRandomColor() }
     }
-    return note
+    const notes = _loadNotesFromStorage()
+    notes.push(note)
+    _saveNotesToStorage(notes)
+    return Promise.resolve()
 }
 
 function createTodoNote(todoStr) {
@@ -72,14 +93,19 @@ function createTodoNote(todoStr) {
     })
     const toDoNote = {
         id: utilService.makeId(),
-        type: "note-txt",
+        type: "note-todos",
         isPinned: false,
         info: {
             label: 'To Do List',
             todos: newList
-        }
+        },
+        style: { backgroundColor: utilService.getRandomColor() }
     }
-    return toDoNote
+    console.log(toDoNote);
+    const notes = _loadNotesFromStorage()
+    notes.push(toDoNote)
+    _saveNotesToStorage(notes)
+    return Promise.resolve()
 }
 
 function togglePin(noteId) {
@@ -103,13 +129,19 @@ function deleteNote(noteId) {
 function query(filterBy) {
     const {searchStr} = filterBy
     const notes = _loadNotesFromStorage()
-    if (!filterBy) return Promise.resolve (notes)
-    const filteredNotes = _getFilteredNotes(searchStr)
+    const notes1 = notes.filter(note =>{
+        return note.isPinned
+    })
+    const notes2 = notes.filter(note =>{
+        return !note.isPinned
+    })
+    const newNotes = [...notes1, ...notes2]
+    if (!filterBy) return Promise.resolve (newNotes)
+    const filteredNotes = _getFilteredNotes(newNotes,searchStr)
     return Promise.resolve(filteredNotes)
 }
 
-function _getFilteredNotes(searchStr) {
-    let notes = _loadNotesFromStorage()
+function _getFilteredNotes(notes,searchStr) {
     return notes.filter(note =>{
         if (note.info.txt) {
             return note.info.txt.toLowerCase().includes(searchStr)
