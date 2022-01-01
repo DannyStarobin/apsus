@@ -43,19 +43,32 @@ export class NoteIndex extends React.Component {
         if (!newNoteType || !content) return
         else if (newNoteType === "Text") {
             noteService.createTxtNote(content).then(
-                this.loadNotes()
+                this.loadNotes(),
+                this.CleanForm()
             )
         }
         else if (newNoteType === "Img") {
             noteService.createImgNote(content).then(
-                this.loadNotes()
+                this.loadNotes(),
+                this.CleanForm()
             )
         }
         else if (newNoteType === "Todos") {
             noteService.createTodoNote(content).then(
-                this.loadNotes()
+                this.loadNotes(),
+                this.CleanForm()
             )
         }
+    }
+
+    CleanForm = () => {
+        this.setState({
+            newNote: {
+                newNoteType: null,
+                content: '',
+                placeholder: 'Add New Note'
+            }
+        })
     }
 
     onChangeNewNoteType = (noteType) =>{
@@ -92,6 +105,7 @@ export class NoteIndex extends React.Component {
             <section className="note-index">
                 <NoteFilter onSetFilter={this.onSetFilter}/>
                 <form className="add-note" onSubmit={this.onAddNote}>
+                    <button onClick={this.onAddNote} >Add</button>
                     <input  
                     placeholder={placeholder}
                     onChange={this.handleNewNote}
@@ -101,7 +115,6 @@ export class NoteIndex extends React.Component {
                     <button onClick={()=> this.onChangeNewNoteType('Text')}>Txt</button>
                     <button onClick={()=> this.onChangeNewNoteType('Img')} >Img</button>
                     <button onClick={()=> this.onChangeNewNoteType('Todos')}>ToDo</button>
-                    <button onClick={this.onAddNote} >Add</button>
                 </form>
                 <div className="note-container">
                     <NoteList notes={notes} onTogglePin={this.onTogglePin} onRemoveNote={this.onRemoveNote} />
