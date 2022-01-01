@@ -1,3 +1,7 @@
+/* body{
+    margin:0
+} */
+
 .mail-index {
     display: flex;
     height: 90vh;
@@ -10,7 +14,7 @@
 }
 
 .mail-filter {
-    height: 100%;
+    height: 100vh;
     width: 300px;
     background-color: rgb(219, 226, 233);
     text-align: start;
@@ -19,8 +23,8 @@
 }
 
 .mail-filter .compose {
-    border-radius: 2em;
-    border: black solid 1px;
+    /* border-radius: 2em;
+    border: black solid 1px; */
     text-decoration: none;
     color: black;
     padding: 10px;
@@ -31,32 +35,31 @@
 
 .mail-filter-input {
     position: absolute;
-    top: 5vh;
-    left: 50%;
-    /* width:; */
+    top: 85px;
+    left:70%;
     transform: translateX(-50%) translateY(-50%)
 }
 
 .mail-filter-input input {
     width: 40vw;
-    height: 4vh;
+    height: 3vh;
     border-radius: 2em;
 }
 
 .mail-filter .filter-btns {
-    margin-top:50px ;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-left: 10px;
 }
 
-.mail-filter .filter-btns img{
+.mail-filter .filter-btns img {
     height: 14px;
     margin: 0 10px;
 }
 
-.mail-filter .filter-btns>*{
+.mail-filter .filter-btns>* {
     font-size: 16px;
     margin-bottom: 10px;
     border: none;
@@ -66,7 +69,7 @@
 
 .new-mail {
     position: absolute;
-    height: 450px;
+    height: 480px;
     width: 550px;
     bottom: 0;
     right: 10%;
@@ -126,4 +129,17 @@
     border: none;
     color: white;
     cursor: pointer;
+}
+
+@media (min-width: 700px) {
+    .mail-filter-input {
+        position: absolute;
+        top: 5vh;
+        left: 50%;
+    }
+
+    .mail-filter-input input {
+        height: 4vh;
+    }
+
 }
