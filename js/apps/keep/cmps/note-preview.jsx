@@ -36,6 +36,25 @@ export function NotePreview({ note, onRemoveNote, onTogglePin }) {
           <section style={style} className='note-preview'>
             <h4>{note.info.label}</h4>
             <ToDoList todos={note.info.todos} />
+            <div className='btn-container'>
+            <button onClick={() => onTogglePin(id)}>
+              <img src={pinImg} />
+            </button>
+            <button>
+              <img src='assets/icons/palette.png' />
+            </button>
+            <button>
+              <img src='assets/icons/mail.png' />
+            </button>
+            <Link to={`/keep/${id}`}>
+            <button>
+              <img src='assets/icons/edit.png' />
+            </button>
+            </Link>
+            <button onClick={() => onRemoveNote(id)}>
+              <img src='assets/icons/bin.png' />
+            </button>
+          </div>
           </section>
     );
   } else if (note.type === 'note-img') {
@@ -43,6 +62,25 @@ export function NotePreview({ note, onRemoveNote, onTogglePin }) {
           <section style={style} className='note-preview'>
             <h4>{note.info.title}</h4>
             <img src={note.info.url} />
+            <div className='btn-container'>
+            <button onClick={() => onTogglePin(id)}>
+              <img src={pinImg} />
+            </button>
+            <button>
+              <img src='assets/icons/palette.png' />
+            </button>
+            <button>
+              <img src='assets/icons/mail.png' />
+            </button>
+            <Link to={`/keep/${id}`}>
+            <button>
+              <img src='assets/icons/edit.png' />
+            </button>
+            </Link>
+            <button onClick={() => onRemoveNote(id)}>
+              <img src='assets/icons/bin.png' />
+            </button>
+          </div>
           </section>
     );
   }

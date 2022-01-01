@@ -8,6 +8,10 @@
 
 }
 
-.note-edit .note-container {
-
+.note-edit .note-edit-container {
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    background-color: burlywood;
+    border-radius: 10px;
 }
