@@ -8,7 +8,16 @@
     align-items: center;
 }
 
+.main-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-inline-end: 10px;
+}
+
 .main-nav a {
+    color: white;
+    text-decoration: none;
     margin-inline-start: 10px;
 }
 
