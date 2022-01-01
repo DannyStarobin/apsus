@@ -29,9 +29,12 @@ export class MailIndex extends React.Component {
         })
     }
 
-    onSelectMail = (mailId) => {
-        if (this.state.selectedMail === mailId) {
+    onSelectMail = (mailId, mailIsRead) => {
+        if (this.state.selectedMail === mailId && mailIsRead) {
             this.setState({ selectedMail: null }, this.loadMails())
+        } else if (this.state.selectedMail !== mailId && mailIsRead) {
+            this.setState({ selectedMail: mailId })
+            this.loadMails()
         } else {
             this.setState({ selectedMail: mailId })
             mailService.setMailIsRead(mailId).then(this.loadMails())
@@ -50,24 +53,47 @@ export class MailIndex extends React.Component {
     }
 
     onToggleStar = (mailId) => {
+        // event.stopPropagation()
         mailService.toggleStar(mailId).then(
             this.loadMails()
         )
     }
 
+    onUnreadMail = (mailId) => {
+        mailService.setMailIsRead(mailId).then(() => {
+            this.setState({ selectedMail: '' })
+            this.loadMails()
+        })
+    }
+
+    onToggleTrash = (mailId) => {
+        console.log('mailId:', mailId);
+        mailService.toggleTrashMail(mailId).then(() => {
+            this.setState({ selectedMail: '' })
+            this.loadMails()
+        })
+    }
 
     render() {
         const { mails } = this.state
         return (
             <section className="mail-index">
                 <div className="mail-filter">
-                    <NavLink className="compose" activeClassName="my-active" to="/email/mail">➕ Compose</NavLink>
-                    <Route component={NewMail} path="/email/mail" />
+                    <NavLink className="compose" activeClassName="my-active" to="/email/compose">➕ Compose</NavLink>
+                    <Route component={NewMail} path="/email/compose/:mailId?" />
                     <MailFilter onSetFilter={this.onSetFilter} />
                     <div className="filter-section"></div>
                 </div>
                 <div className="mail-box">
-                    <MailList mails={mails} onSelectMail={this.onSelectMail} selectedMail={this.state.selectedMail} onRemoveMail={this.onRemoveMail} onToggleStar={this.onToggleStar} />
+                    <MailList
+                        mails={mails}
+                        onSelectMail={this.onSelectMail}
+                        selectedMail={this.state.selectedMail}
+                        onRemoveMail={this.onRemoveMail}
+                        onToggleStar={this.onToggleStar}
+                        onUnreadMail={this.onUnreadMail}
+                        onToggleTrash={this.onToggleTrash}
+                    />
                 </div>
             </section>
         )
