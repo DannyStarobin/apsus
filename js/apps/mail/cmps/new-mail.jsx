@@ -4,28 +4,59 @@ export class NewMail extends React.Component {
 
     state = {
         mail: {
+            to: '',
             subject: '',
             body: '',
+            isDraft: true,
+            id: ''
         },
     };
 
     inputRef = React.createRef();
+    gInterval
 
     componentDidMount() {
         this.inputRef.current.focus();
+        this.loadMail()
+        this.gInterval = setInterval(() => {
+            this.onSaveDraft()
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.gInterval)
+    }
+
+    loadMail = () => {
+        const { mailId } = this.props.match.params
+        if (!mailId) return
+        mailService.getMailById(mailId).then(mail => {
+            if (!mail) return this.props.history.push('/email')
+            this.setState({ mail })
+        })
     }
 
     onCloseMail = () => {
+        this.onSaveDraft()
         this.props.history.push('/email')
     }
 
-
-    
-    onSendMail = (ev) => {
-        ev.preventDefault();
+    onSaveDraft = () => {
         const { mail } = this.state;
+        mailService.saveMail(mail).then((newMail) => {
+            if (mail.id) return
+            this.setState((prevState) => ({
+                mail: { ...prevState.mail, ...newMail },
+            }));
+        })
+    }
+
+    onSendMail = (ev) => {
+        const { mail } = this.state;
+        mail.isDraft = false
         mailService.saveMail(mail).then(() => {
-            this.props.history.push('/email')
+            ev.persist()
+            this.onCloseMail()
         })
     };
 
@@ -39,8 +70,9 @@ export class NewMail extends React.Component {
 
 
 
+
     render() {
-        const { subject, body } = this.state.mail;
+        const { subject, body, to } = this.state.mail;
         return (
 
             <div className="new-mail">
@@ -51,13 +83,24 @@ export class NewMail extends React.Component {
                         className="email-addres-input"
                         ref={this.inputRef}
                         placeholder="To:"
+                        name="to"
+                        type="email"
+                        value={to}
+                        onChange={this.handleChange}
+                        autoComplete="off"
+                        required
+                    />
+
+                    <input
+                        className="email-addres-input"
+                        ref={this.inputRef}
+                        placeholder="Subject:"
                         name="subject"
                         type="text"
                         value={subject}
                         onChange={this.handleChange}
                         autoComplete="off"
                     />
-
 
                     <textarea
                         name="body"

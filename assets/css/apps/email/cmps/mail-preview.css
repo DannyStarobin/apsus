@@ -3,6 +3,13 @@
     border-bottom: 1px solid rgb(167, 173, 180);
 }
 
+img{
+    height: 16px;
+}
+
+
+
+
 .mail-preview h3 {
     padding-inline-start: 15px;
     padding-inline-end: 15px;
@@ -61,6 +68,8 @@ border-bottom: 1px solid rgb(167, 173, 180);;
 .mail-preview-extended button img {
   height: 16px;
 }
+
+
 
 .mail-preview-extended h2,
 .mail-preview-extended h3{
