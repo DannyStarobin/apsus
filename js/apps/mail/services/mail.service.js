@@ -9,7 +9,8 @@ export const mailService = {
     setMailIsRead,
     getTimeForDisplay,
     saveMail,
-    toggleTrashMail
+    toggleTrashMail,
+    unreadCount
 }
 
 const KEY = 'mailDB'
@@ -283,6 +284,16 @@ function setMailIsRead(mailId) {
     else mail.isRead = false
     _saveMailsToStorage(mails)
     return Promise.resolve()
+}
+
+function unreadCount(){
+    const mails = _loadMailsFromStorage()
+    let unreadMails =0
+     mails.map(mail => {
+        if (!mail.isRead && mail.to ==='user@appsus.com') unreadMails++
+       
+    })
+    return Promise.resolve(unreadMails)
 }
 
 

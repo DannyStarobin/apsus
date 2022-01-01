@@ -9,6 +9,7 @@ const { NavLink, Route } = ReactRouterDOM
 export class MailIndex extends React.Component {
 
     state = {
+        unreadCount: '',
         mails: [],
         selectedMail: '',
         filterBy: '',
@@ -20,6 +21,7 @@ export class MailIndex extends React.Component {
 
     componentDidMount() {
         this.loadMails()
+        this.getUnreadCount()
     }
 
     loadMails = () => {
@@ -37,7 +39,7 @@ export class MailIndex extends React.Component {
             this.loadMails()
         } else {
             this.setState({ selectedMail: mailId })
-            mailService.setMailIsRead(mailId).then(this.loadMails())
+            mailService.setMailIsRead(mailId).then(this.getUnreadCount())
         }
     }
 
@@ -62,16 +64,23 @@ export class MailIndex extends React.Component {
     onUnreadMail = (mailId) => {
         mailService.setMailIsRead(mailId).then(() => {
             this.setState({ selectedMail: '' })
-            this.loadMails()
+            this.getUnreadCount()
         })
     }
 
     onToggleTrash = (mailId) => {
-        console.log('mailId:', mailId);
         mailService.toggleTrashMail(mailId).then(() => {
             this.setState({ selectedMail: '' })
             this.loadMails()
         })
+    }
+
+    getUnreadCount = () => {
+        mailService.unreadCount().then((res) => {
+            this.setState({ unreadCount: res })
+            this.loadMails()
+        })
+
     }
 
     render() {
@@ -81,7 +90,9 @@ export class MailIndex extends React.Component {
                 <div className="mail-filter">
                     <NavLink className="compose" activeClassName="my-active" to="/email/compose">➕ Compose</NavLink>
                     <Route component={NewMail} path="/email/compose/:mailId?" />
-                    <MailFilter onSetFilter={this.onSetFilter} />
+                    <Route component={NewMail} path="/email/compose?" />
+                    {/* <Route component={NewMail} path="/email/compose/:body?" /> */}
+                    <MailFilter onSetFilter={this.onSetFilter}  unreadCount={this.state.unreadCount}/>
                     <div className="filter-section"></div>
                 </div>
                 <div className="mail-box">

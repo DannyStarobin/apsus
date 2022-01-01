@@ -1,5 +1,6 @@
 .mail-preview {
     display: flex;
+    
     border-bottom: 1px solid rgb(167, 173, 180);
 }
 
@@ -21,12 +22,14 @@ img{
 }
 
 .mail-preview .mail-name{
-    width: 20%;
+    width: 300px;
+
 } 
 
 .mail-preview .mail-time{
-    width: 20%;
-    text-align: right;
+  position: absolute;
+  right: 20px;
+
 }
 
 .mail-preview .mail-subject{
@@ -71,6 +74,7 @@ border-bottom: 1px solid rgb(167, 173, 180);;
 
 
 
+.mail-preview-extended h4,
 .mail-preview-extended h2,
 .mail-preview-extended h3{
     margin-left: 25px;

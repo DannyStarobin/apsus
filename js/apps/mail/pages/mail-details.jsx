@@ -24,7 +24,6 @@ export class MailDetails extends React.Component {
 
     loadMail = () => {
         const { mailId } = this.props.match.params
-        console.log('mailId in mailDetails', mailId);
         mailService.getMailById(mailId).then(mail => {
             if (!mail) return this.props.history.push('/')
             this.setState({ mail })
@@ -49,32 +48,44 @@ export class MailDetails extends React.Component {
         )
     }
 
+    onUnreadMail = (mailId) => {
+        mailService.setMailIsRead(mailId).then(() => {
+            this.setState({ selectedMail: '' })
+            this.onGoBack()
+        })
+    }
+
+    onToggleTrash = (mailId) => {
+        this.props
+        mailService.toggleTrashMail(mailId).then(() => {
+            this.setState({ selectedMail: '' })
+            this.onGoBack()
+        })
+    }
 
     render() {
         const { mail } = this.state
         if (!mail) return <React.Fragment></React.Fragment>
+
         const sentAt = mailService.getTimeForDisplay(mail.sentAt)
         const starImg = (!mail.isStared) ? "assets/icons/star1.png" : 'assets/icons/star.png';
+
         return (
             <section className="mail-details" >
 
-                {/* <div className="mail-filter">
-                    <MailFilter onSetFilter={MailIndex.onSetFilter} />
-                    <div className="filter-section"></div>
-                </div> */}
                 <div className="mail-options-bar">
-                    <button className="primary-btn" onClick={this.onGoBack}><img src={'assets/icons/left-arrow.png'}/></button>
-                    <button className="primary-btn" onClick={this.mail}><img src={'assets/icons/bin.png'}/></button>
-                    <button className="primary-btn" onClick={this.mail}><img src={'assets/icons/unread-message.png'}/></button>
+                    <button className="primary-btn" onClick={this.onGoBack}><img src={'assets/icons/left-arrow.png'} /></button>
+                    <button className="primary-btn" onClick={() => this.onToggleTrash(mail.id)}><img src={'assets/icons/bin.png'} /></button>
+                    <button className="primary-btn" onClick={() => this.onUnreadMail(mail.id)}><img src={'assets/icons/unread-message.png'}  /></button>
                 </div>
 
                 <h2 className="mail-subject">{mail.subject} </h2>
                 <div className="name-btns-container">
                     <h3 className="mail-name">{mail.name} <span className="email-adrres">&#12296;{mail.from}&#12297;</span></h3>
                     <div className="btns-time-container">
+                        <button onClick={() => this.onToggleStar(mail.id)}><img src={starImg} /></button>
                         <h4 className="mail-date">{sentAt}</h4>
-                        <button onClick={() => this.onToggleStar(mail.id)}><img src={starImg}/></button>
-                        <button>&#10150;</button>
+                
                     </div>
                 </div>
                 <p className className="mail-body">-{mail.body}</p>
