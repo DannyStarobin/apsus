@@ -6,7 +6,12 @@
 }
 
 .add-note {
+    padding-bottom: 20px;
     text-align: center;
+}
+.add-note button {
+    margin-inline-end: 5px;
+    border-radius: 5px; 
 }
 
 .add-note input {

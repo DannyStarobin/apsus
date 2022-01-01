@@ -1,0 +1,11 @@
+.home-img {
+    height: 200px;
+    border-radius: 5px;
+}
+
+.app-home {
+    background-color: #253267;
+    width: 99vw;
+    height: 80vh;
+    color: white;
+}
