@@ -127,3 +127,10 @@
     color: white;
     cursor: pointer;
 }
+
+.search-btn {
+    border: none;
+    background-color: inherit;
+}
+
+

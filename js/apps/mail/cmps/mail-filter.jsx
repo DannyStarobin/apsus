@@ -47,8 +47,9 @@ export class MailFilter extends React.Component {
                         onChange={this.handleChange}
                         autoComplete="off"
                     />
-                    <button>&#128270;</button>
+                    <button className="search-btn">&#128270;</button>
                 </form>
+                
                 <div className="filter-btns">
                     <button className="mail-filter-btn" name="type" value="inbox" onClick={this.handleChange}><img className="img-btn" src={'assets/icons/inbox.png'} />Inbox</button>
                     <button className="mail-filter-btn" name="type" value="sent" onClick={this.handleChange}><img className="img-btn" src={'assets/icons/sent.png'}/>Sent</button>
