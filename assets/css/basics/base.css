@@ -1,15 +1,16 @@
-* {
-    box-sizing: border-box;
-}
-
 @font-face {
     font-family: ubuntu;
     src: url("/assets/fonts/Ubuntu-Regular.ttf");
 }
 
+* {
+    box-sizing: border-box;
+}
+
+
 body {
     font-family: ubuntu,serif;
-    background-color: rgb(255, 255, 255);
+    background-color: #253267;
     padding: 0;
     margin-bottom: 0;
 }

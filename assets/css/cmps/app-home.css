@@ -1,3 +1,14 @@
+
+
+.home-img {
+    height: 300px;
+    border-radius: 5px;
+}
+
 .app-home {
     text-align: center;
+    background-color: #253267;
+    width: 99vw;
+    height: 80vh;
+    color: white;
 }

@@ -3,8 +3,6 @@
 @import "./cmps/app-home.css";
 @import "./cmps/user-msg.css";
 
-@import "./apps/home/home.css";
-
 @import "./apps/email/mail-details.css";
 @import "./apps/email/mail-index.css";
 @import "../css/apps/email/cmps/mail-preview.css";
