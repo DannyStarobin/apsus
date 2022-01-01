@@ -14,9 +14,6 @@ export function NotePreview({ note, onRemoveNote, onTogglePin }) {
               <img src={pinImg} />
             </button>
             <button>
-              <img src='assets/icons/palette.png' />
-            </button>
-            <button>
               <img src='assets/icons/mail.png' />
             </button>
             <Link to={`/keep/${id}`}>
@@ -40,9 +37,6 @@ export function NotePreview({ note, onRemoveNote, onTogglePin }) {
               <img src={pinImg} />
             </button>
             <button>
-              <img src='assets/icons/palette.png' />
-            </button>
-            <button>
               <img src='assets/icons/mail.png' />
             </button>
             <Link to={`/keep/${id}`}>
@@ -64,9 +58,6 @@ export function NotePreview({ note, onRemoveNote, onTogglePin }) {
             <div className='btn-container'>
             <button onClick={() => onTogglePin(id)}>
               <img src={pinImg} />
-            </button>
-            <button>
-              <img src='assets/icons/palette.png' />
             </button>
             <button>
               <img src='assets/icons/mail.png' />
