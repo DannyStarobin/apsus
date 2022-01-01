@@ -12,11 +12,11 @@ export class NewMail extends React.Component {
         },
     };
 
-    inputRef = React.createRef();
+    // inputRef = React.createRef();
     gInterval
 
     componentDidMount() {
-        this.inputRef.current.focus();
+        // this.inputRef.current.focus();
         this.loadMail()
         this.gInterval = setInterval(() => {
             this.onSaveDraft()
@@ -24,11 +24,15 @@ export class NewMail extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.gInterval)
     }
 
     loadMail = () => {
+        const urlSearchParams = new URLSearchParams(this.props.location.search)
         const { mailId } = this.props.match.params
+        console.log('this.props.match.params:', this.props.match.params);
+        console.log('urlSearchParams:', urlSearchParams);
+
+
         if (!mailId) return
         mailService.getMailById(mailId).then(mail => {
             if (!mail) return this.props.history.push('/email')
@@ -38,6 +42,7 @@ export class NewMail extends React.Component {
 
     onCloseMail = () => {
         this.onSaveDraft()
+        clearInterval(this.gInterval)
         this.props.history.push('/email')
     }
 
@@ -67,9 +72,6 @@ export class NewMail extends React.Component {
             mail: { ...prevState.mail, [field]: value },
         }));
     };
-
-
-
 
     render() {
         const { subject, body, to } = this.state.mail;

@@ -1,5 +1,6 @@
 .mail-details>* {
     margin: 0 10px;
+    color: white;
 }
 
 .mail-details button {
@@ -37,6 +38,7 @@
 }
 
 .mail-details .mail-options-bar {
+    margin-top: 20px;
     border-bottom:solid 1px rgb(126, 126, 126);
     margin-bottom: 20px;
 }
