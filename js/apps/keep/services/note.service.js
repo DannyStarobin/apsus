@@ -45,13 +45,11 @@ _createNotes()
 
 
 function updateNote(noteToSave) {
-    console.log(noteToSave);
     const notes = _loadNotesFromStorage()
     var noteIdx = notes.findIndex(function (note) {
         return note.id === noteToSave.id;
     })
     notes[noteIdx] = noteToSave
-    console.log(notes);
     _saveNotesToStorage(notes);
     return Promise.resolve()
 }
@@ -101,7 +99,6 @@ function createTodoNote(todoStr) {
         },
         style: { backgroundColor: utilService.getRandomColor() }
     }
-    console.log(toDoNote);
     const notes = _loadNotesFromStorage()
     notes.push(toDoNote)
     _saveNotesToStorage(notes)

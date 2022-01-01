@@ -20,9 +20,7 @@ export class NoteEdit extends React.Component {
 
   handleTxtChange = ({ target }) => {
     const field = target.name;
-    console.log(field);
     const value = target.type === 'number' ? +target.value : target.value;
-    console.log(value);
     this.setState((prevState) => ({
       note: {
         ...prevState.note,
@@ -35,9 +33,7 @@ export class NoteEdit extends React.Component {
 
   handleImgChange = ({ target }) => {
     const field = target.name;
-    console.log(field);
     const value = target.type === 'number' ? +target.value : target.value;
-    console.log(value);
     this.setState((prevState) => ({
       note: {
         ...prevState.note,
@@ -49,11 +45,22 @@ export class NoteEdit extends React.Component {
     }));
   };
 
+  handleTodosChange = ({ target }) => {
+    const field = target.name;
+    const value = target.type === 'number' ? +target.value : target.value;
+    this.setState((prevState) => ({
+      note: {
+        ...prevState.note,
+        info: {
+          ...prevState.note.info,
+          [field]: value,
+        },
+      },
+    }));
+  };
   handleColorChange = ({ target }) => {
     const field = target.name;
-    console.log(field);
     const value = target.type === 'number' ? +target.value : target.value;
-    console.log(value);
     this.setState((prevState) => ({
       note: {
         ...prevState.note,
@@ -72,7 +79,6 @@ export class NoteEdit extends React.Component {
   onSaveNote = (ev) => {
     ev.preventDefault();
     const { note } = this.state;
-    console.log(note);
     noteService.updateNote(note).then(() => {
       this.onGoBack();
     });
@@ -148,6 +154,55 @@ export class NoteEdit extends React.Component {
                   onChange={this.handleImgChange}
                 />
               </div>
+
+              <div className='input-container'>
+                <label htmlFor='by-color'>Color:</label>
+                <input
+                  placeholder='Enter Text'
+                  name='backgroundColor'
+                  type='color'
+                  id='by-color'
+                  value={backgroundColor || ''}
+                  onChange={this.handleColorChange}
+                />
+              </div>
+              <button className='primary-btn '>Save Note</button>
+            </form>
+          </div>
+        </section>
+      );
+    } else if (note.type === 'note-todos') {
+      const { todos, label } = note.info;
+      const { backgroundColor } = note.style;
+      return (
+        <section className='note-edit'>
+          <div className='note-edit-container'>
+            <h1>Edit Note</h1>
+            <form className='note-edit-form' onSubmit={this.onSaveNote}>
+              <div className='input-container'>
+                <label htmlFor='by-label'>Label:</label>
+                <input
+                  placeholder='Enter Title'
+                  name='label'
+                  type='text'
+                  id='by-label'
+                  value={label || ''}
+                  onChange={this.handleTodosChange}
+                />
+              </div>
+              {/* <TodosInput todos={todos}/> */}
+
+              {/* <div className='input-container'>
+                <label htmlFor='by-url'>Url:</label>
+                <input
+                  placeholder='Enter Url'
+                  name='url'
+                  type='text'
+                  id='by-url'
+                  value={url || ''}
+                  onChange={this.handleImgChange}
+                />
+              </div> */}
 
               <div className='input-container'>
                 <label htmlFor='by-color'>Color:</label>
