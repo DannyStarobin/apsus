@@ -52,8 +52,8 @@ export class MailIndex extends React.Component {
         })
     }
 
-    onToggleStar = (mailId) => {
-        // event.stopPropagation()
+    onToggleStar = (event, mailId) => {
+        event.stopPropagation()
         mailService.toggleStar(mailId).then(
             this.loadMails()
         )

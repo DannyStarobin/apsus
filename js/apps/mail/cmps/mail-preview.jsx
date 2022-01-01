@@ -19,17 +19,17 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
 
 
     const mainContant = <React.Fragment>
-        <h3 className="mail-name">{mail.name}</h3>
-        <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h3>
-        <h3 className="mail-time">{sentAt}</h3>
+        <h4 className="mail-name">{mail.name}</h4>
+        <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+        <h4 className="mail-time">{sentAt}</h4>
     </React.Fragment>
 
     const expendedContant = <React.Fragment>
         <button className="primary-btn" onClick={() => onUnreadMail(mail.id)}><img src={'assets/icons/unread-message.png'} /></button>
         <button onClick={() => onToggleTrash(mail.id)}><img src={trashIMg} /></button>
-        <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
+        <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
         <h2>{mail.subject}</h2>
-        <h3>{mail.name} <span className="email-adrres">&#12296;{mail.to}&#12297;</span></h3>
+        <h4>{mail.name} <span className="email-adrres">&#12296;{mail.to}&#12297;</span></h4>
         <p>{mail.body.substr(0, 100) + '...'}</p>
     </React.Fragment>
 
@@ -37,7 +37,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
 
     if (mail.id !== selectedMail && !mail.isDraft && mail.to === 'user@appsus.com') return (
         <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)}>
-            <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
+            <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
             {mainContant}
         </div>
     )
@@ -45,6 +45,8 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
     if (mail.id === selectedMail && !mail.isDraft) return (
         <div>
             <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)}>
+            <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
+
                 {mainContant}
             </div>
             <div className="mail-preview-extended">
@@ -60,28 +62,29 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
 
     if (mail.id !== selectedMail && !mail.isDraft && mail.to !== 'user@appsus.com') return (
         <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
-            <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
-            <h3>To: &#12296;{mail.to}&#12297;</h3>
-            <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h3>
-            <h3 className="mail-time">{sentAt}</h3>
+            <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
+            <h4 className="mail-name">To:&lt;{mail.to}&gt;</h4>
+            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+            <h4 className="mail-time">{sentAt}</h4>
         </div>
     )
 
     if (mail.id === selectedMail && !mail.isDraft && mail.to !== 'user@appsus.com') return (
         <div>
             <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
+            <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
 
-                <p>Draft</p>
-                <h3>To: &#12296;{mail.to}&#12297;</h3>
-                <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h3>
-                <h3 className="mail-time">{sentAt}</h3>
+              
+                <h4>To:<span> &#12296;{mail.to}&#12297;</span></h4>
+                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+                <h4 className="mail-time">{sentAt}</h4>
             </div>
             <div className="mail-preview-extended">
                 <button className="primary-btn" onClick={() => onUnreadMail(mail.id)}><img src={'assets/icons/unread-message.png'} /></button>
                 <button onClick={() => onToggleTrash(mail.id)}><img src={trashIMg} /></button>
-                <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
+                <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
                 <h2>{mail.subject}</h2>
-                <h3>To: &#12296;{mail.to}&#12297;</h3>
+                <h4>To: &#12296;{mail.to}&#12297;</h4>
                 <p>{mail.body.substr(0, 100) + '...'}</p>
             </div>
         </div >
@@ -92,11 +95,11 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
 
     if (mail.id !== selectedMail && mail.isDraft) return (
         <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
-            <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
-            <p>Draft</p>
-            <h3>To: &#12296;{mail.to}&#12297;</h3>
-            <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h3>
-            <h3 className="mail-time">{sentAt}</h3>
+            <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
+           
+            <h4 className="mail-name">To: <span> &#12296;{mail.to}&#12297;</span></h4>
+            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+            <h4 className="mail-time">{sentAt}</h4>
         </div>
     )
 
@@ -105,19 +108,19 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
     if (mail.id === selectedMail && mail.isDraft) return (
         <div>
             <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
+            <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
 
-                <p>Draft</p>
-                <h3>To: &#12296;{mail.to}&#12297;</h3>
-                <h3 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h3>
-                <h3 className="mail-time">{sentAt}</h3>
+                <h4>Draft: <span> &#12296;{mail.to}&#12297;</span></h4>
+                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+                <h4 className="mail-time">{sentAt}</h4>
             </div>
             <div className="mail-preview-extended">
                 {composeBtn}
                 <button className="primary-btn" onClick={() => onUnreadMail(mail.id)}><img src={'assets/icons/unread-message.png'} /></button>
                 <button onClick={() => onToggleTrash(mail.id)}><img src={trashIMg} /></button>
-                <button onClick={() => onToggleStar(mail.id)}><img src={starImg} /></button>
+                <button onClick={(event) => onToggleStar(event, mail.id)}><img src={starImg} /></button>
                 <h2>{mail.subject}</h2>
-                <h3>To: &#12296;{mail.to}&#12297;</h3>
+                <h4>Draft: &#12296;{mail.to}&#12297;</h4>
                 <p>{mail.body.substr(0, 100) + '...'}</p>
             </div>
         </div >
