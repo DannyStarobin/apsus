@@ -21,7 +21,8 @@ const gNotes = [
     { id: "n102", type: "note-txt", isPinned: true, info: { txt: "Don't forget to turn off oven" },style: { backgroundColor: utilService.getRandomColor() } },
     { id: "n103", type: "note-img", info: { url: "./assets/img/bobi.png", title: "Bobi and Me" },style: { backgroundColor: utilService.getRandomColor() } },
     { id: "n104", type: "note-todos", info: { label: "Get my stuff together", todos: [{ txt: "Driving license", doneAt: null }, { txt: "Coding power", doneAt: 187111111 },{ txt: "Save the world", doneAt: 187111111 }] },style: { backgroundColor: utilService.getRandomColor() } },
-    { id: "n105", type: "note-img", isPinned: true, info: { url: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F61119c500f0713e04e419c4e%2FA-picture-of-bitcoin--a-digital-currency-%2F960x0.jpg%3Ffit%3Dscale", title:'Invest in crypto' },style: { backgroundColor: utilService.getRandomColor() } }
+    { id: "n105", type: "note-img", isPinned: true, info: { url: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F61119c500f0713e04e419c4e%2FA-picture-of-bitcoin--a-digital-currency-%2F960x0.jpg%3Ffit%3Dscale", title:'Invest in crypto' },style: { backgroundColor: utilService.getRandomColor() } },
+    { id: "n106 ", type: "note-img", isPinned: true, info: { url: "https://www.creatopy.com/blog/wp-content/uploads/2018/07/classic-dancing-banana-gif.gif", title:'Banana' },style: { backgroundColor: utilService.getRandomColor() } }
 ];
 
 function createImgNote(url) {
