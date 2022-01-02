@@ -24,8 +24,8 @@ const gMails = [
         id: 'e101',
         subject: 'Miss you!',
         body: utilService.makeLorem(150),
-        isRead: false,
-        sentAt: 1551133910594,
+        isRead: true,
+        sentAt: 1641079716477,
         to: 'user@appsus.com',
         from: 'lola@bmail.com',
         name: 'Lola',
@@ -36,84 +36,134 @@ const gMails = [
         subject: 'Municipal tax!',
         body: utilService.makeLorem(100),
         isRead: false,
-        sentAt: 1551133930594,
+        sentAt:1641075716477,
         to: 'user@appsus.com',
         from: 'myosef@zalla.com',
         name: 'Maale yosef',
         isStared: false,
-        
+
     },
     {
         id: 'e103',
         subject: 'Come to...',
         body: utilService.makeLorem(200),
         isRead: false,
-        sentAt: 1551133950594,
+        sentAt: 1640079716477,
         to: 'user@appsus.com',
         from: 'bestv@abmail.com',
         name: 'Best vacations',
         isStared: false,
-       
+
     },
     {
         id: 'e104',
         subject: 'Wtf?',
         body: utilService.makeLorem(150),
-        isRead: false,
-        sentAt: 1551133970594,
+        isRead: true,
+        sentAt:1631079716477,
         to: 'user@appsus.com',
         from: 'holly@gsus.com',
         name: 'Holly wtf project',
         isStared: false,
-      
+
     },
     {
         id: 'e105',
         subject: 'Amazor order is on the way',
         body: utilService.makeLorem(200),
         isRead: false,
-        sentAt: 1551133990594,
+        sentAt: 1630079716477,
         to: 'user@appsus.com',
         from: 'amazor@service.com',
         name: 'Amazor',
         isStared: false,
-       
+
     },
     {
         id: 'e106',
         subject: 'Tell me more about wtf',
         body: utilService.makeLorem(250),
         isRead: false,
-        sentAt: 1551133990594,
+        sentAt: 1630009716477,
         to: 'holly@gsus.com',
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
         isStared: false,
-       
+
     },
     {
         id: 'e107',
         subject: 'Interested in your holidays',
         body: utilService.makeLorem(100),
         isRead: false,
-        sentAt: 1551133990594,
+        sentAt: 1629079716477,
         to: 'bestv@abmail.com',
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
         isStared: false,
-      
+
     },
     {
         id: 'e108',
         subject: 'order didnt arived',
         body: utilService.makeLorem(50),
+        isRead: true,
+        sentAt: 1625079716477,
+        to: 'amazor@service.com',
+        from: 'user@appsus.com',
+        name: 'Mahatma Appsus',
+        isStared: true,
+
+    },
+    {
+        id: 'e109',
+        subject: 'order didnt arived',
+        body: utilService.makeLorem(50),
         isRead: false,
-        sentAt: 1551133990594,
+        sentAt: 1621079716477,
+        to: 'user@appsus.com',
+        from: 'Help@service.com',
+        name: 'Please help',
+        isStared: true,
+
+    },
+    {
+        id: 'e110',
+        subject: 'order didnt arived',
+        body: utilService.makeLorem(50),
+        isRead: true,
+        sentAt: 1620079716477,
+        to: 'user@appsus.com',
+        from: 'reaction@service.com',
+        name: 'Reaction action',
+        isStared: false,
+        isTrash:true
+
+    },
+    {
+        id: 'e111',
+        subject: 'Justify the content',
+        body: utilService.makeLorem(50),
+        isRead: false,
+        sentAt: 1615079716477,
+        to: 'user@appsus.com',
+        from: 'amazor@service.com',
+        name: 'Balbazor',
+        isStared: true,
+
+    },
+    {
+        id: 'e112',
+        subject: 'Wow something',
+        body: utilService.makeLorem(50),
+        isRead: false,
+        sentAt: 1661079716477,
         to: 'amazor@service.com',
         from: 'user@appsus.com',
         name: 'Mahatma Appsus',
         isStared: false,
-        
+        isDraft: true
+
     },
 
 ]
@@ -147,7 +197,7 @@ function _getSortedMails(mails, type) {
             if (mail.to !== loggedinUser.email && !mail.isDraft && !mail.isTrash) return mail
         }
         if (type === 'inbox') {
-            if (mail.to === loggedinUser.email  && !mail.isTrash) return mail
+            if (mail.to === loggedinUser.email && !mail.isTrash) return mail
         }
         if (type === 'isStared' && !mail.isTrash) {
             if (mail.isStared) return mail
@@ -261,9 +311,9 @@ function toggleStar(mailId) {
     return Promise.resolve()
 }
 
-function toggleTrashMail(mailId){
+function toggleTrashMail(mailId) {
     console.log(' mailId from trash:', mailId);
-    
+
     const mails = _loadMailsFromStorage()
     const mail = mails.find(mail => {
         return mail.id === mailId
@@ -286,12 +336,12 @@ function setMailIsRead(mailId) {
     return Promise.resolve()
 }
 
-function unreadCount(){
+function unreadCount() {
     const mails = _loadMailsFromStorage()
-    let unreadMails =0
-     mails.map(mail => {
-        if (!mail.isRead && mail.to ==='user@appsus.com') unreadMails++
-       
+    let unreadMails = 0
+    mails.map(mail => {
+        if (!mail.isRead && mail.to === 'user@appsus.com') unreadMails++
+
     })
     return Promise.resolve(unreadMails)
 }

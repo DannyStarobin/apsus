@@ -1,16 +1,13 @@
 .mail-preview {
     display: flex;
-    
+    flex-wrap: wrap;
     border-bottom: 1px solid rgb(167, 173, 180);
 }
 
 img{
     height: 16px;
 }
-
-
-
-
+.mail-preview h4,
 .mail-preview h3 {
     padding-inline-start: 15px;
     padding-inline-end: 15px;
@@ -22,7 +19,7 @@ img{
 }
 
 .mail-preview .mail-name{
-    width: 300px;
+    width:250px;
 
 } 
 
@@ -47,7 +44,6 @@ img{
     margin-right: 10px;
 }
 
-
 .mail-preview-extended .email-adrres{
     color: rgb(83, 83, 83);
 }
@@ -55,7 +51,6 @@ img{
 .mail-preview-extended {
 border-bottom: 1px solid rgb(167, 173, 180);;
 }
-
 
 .mail-preview-extended button{
     float: right;
@@ -67,12 +62,9 @@ border-bottom: 1px solid rgb(167, 173, 180);;
     margin-inline-end:5px ;
 }
 
-
 .mail-preview-extended button img {
   height: 16px;
 }
-
-
 
 .mail-preview-extended h4,
 .mail-preview-extended h2,
@@ -83,3 +75,4 @@ border-bottom: 1px solid rgb(167, 173, 180);;
     margin-left: 25px;
     margin-right: 25px;
 } 
+

@@ -29,7 +29,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
         <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)}>
             {toggleStar}
             <h4 className="mail-name">{mail.name}</h4>
-            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 20) + '...'}</span></h4>
             <h4 className="mail-time">{sentAt}</h4>
         </div>
     )
@@ -39,7 +39,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
             <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)}>
                 {toggleStar}
                 <h4 className="mail-name">{mail.name}</h4>
-                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 20) + '...'}</span></h4>
                 <h4 className="mail-time">{sentAt}</h4>
             </div>
             <div className="mail-preview-extended">
@@ -63,7 +63,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
         <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
             {toggleStar}
             <h4 className="mail-name">To: &#12296;{mail.to}&#12297;</h4>
-            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 20) + '...'}</span></h4>
             <h4 className="mail-time">{sentAt}</h4>
         </div>
     )
@@ -74,7 +74,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
             <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
                 {toggleStar}
                 <h4>To:<span> &#12296;{mail.to}&#12297;</span></h4>
-                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 20) + '...'}</span></h4>
                 <h4 className="mail-time">{sentAt}</h4>
             </div>
             <div className="mail-preview-extended">
@@ -99,7 +99,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
         <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
             {toggleStar}
             <h4 className="mail-name">Draft: <span> &#12296;{mail.to}&#12297;</span></h4>
-            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+            <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 20) + '...'}</span></h4>
             <h4 className="mail-time">{sentAt}</h4>
         </div>
     )
@@ -111,7 +111,7 @@ export function MailPreview({ mail, onSelectMail, selectedMail, onRemoveMail, on
             <div className="mail-preview" style={{ background }} onClick={() => onSelectMail(mail.id, mail.isRead)} >
                 {toggleStar}
                 <h4>Draft: <span> &#12296;{mail.to}&#12297;</span></h4>
-                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 50) + '...'}</span></h4>
+                <h4 className="mail-subject">{mail.subject} <span className="mail-body-short">-{mail.body.substr(0, 20) + '...'}</span></h4>
                 <h4 className="mail-time">{sentAt}</h4>
             </div>
             <div className="mail-preview-extended">
