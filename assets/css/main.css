@@ -7,7 +7,7 @@
 @import "./apps/email/mail-index.css";
 @import "../css/apps/email/cmps/mail-preview.css";
 
-@import "/assets/css/apps/keep/note-index.css";
-@import "/assets/css/apps/keep/note-preview.css";
-@import "/assets/css/apps/keep/note-filter.css";
-@import "/assets/css/apps/keep/note-edit.css"
+@import "./apps/keep/note-index.css";
+@import "./apps/keep/note-preview.css";
+@import "./apps/keep/note-filter.css";
+@import "./apps/keep/note-edit.css"
